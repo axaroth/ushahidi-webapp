@@ -1,0 +1,17 @@
+#!/bin/bash
+
+ops="serve"
+
+case "$1" in 
+  start)
+    ops="$ops --daemon"
+    ;;
+  stop)
+    ops="$ops --stop-daemon"
+    ;;
+  *)
+    echo "Usage: serve-static {start|stop}" >&2
+    exit 3
+    ;;
+esac
+%(directory)s/bin/paster $ops %(server_cfg)s 

@@ -1,0 +1,7 @@
+bin
+parts
+develop-eggs
+.installed.cfg
+.mr.developer.cfg
+versions.picked.cfg
+src

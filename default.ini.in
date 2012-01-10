@@ -1,0 +1,21 @@
+[composite:main]
+use = egg:Paste#urlmap
+/ = home
+/cache.manifest = manifest
+/api = api
+
+[app:home]
+use = egg:Paste#static
+document_root = ${static-config:server_root}
+
+[app:manifest]
+use = egg:ushahidi.reporting.webapp#manifest
+directory = ${buildout:directory}/www
+
+[app:api]
+use = egg:ushahidi.reporting.webapp#api
+
+[server:main]
+use =  egg:PasteScript#wsgiutils
+host = ${static-config:server_host}
+port = ${static-config:server_port}
