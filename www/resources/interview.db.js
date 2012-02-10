@@ -1,3 +1,6 @@
+var api_url = "/api"  // fix for your server
+
+
 var interviews_db = {};
 
 (function(context) {
@@ -59,65 +62,133 @@ var interviews_db = {};
 
     };
 
-    context.postInterview = function (interview) {
-        var data = {'task': 'report'};
+    context.dataURItoBlob = function (dataURI) {
+        // convert base64 to raw binary data held in a string
+        // doesn't handle URLEncoded DataURIs
+        var byteString = atob(dataURI.split(',')[1]);
 
+        // separate out the mime component
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+
+        // write the bytes of the string to an ArrayBuffer
+        var ab = new ArrayBuffer(byteString.length);
+        var ia = new Uint8Array(ab);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+
+        // write the ArrayBuffer to a blob, and you're done
+        BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
+        var bb = new BlobBuilder();
+        bb.append(ab);
+        return bb.getBlob(mimeString);
+    }
+
+    context.postInterview = function (interview) {
         if (interview.posted == false) {
             interview.answers.list( function (answers) {
-                for(var idx in answers) {
-                    if (answers[idx].query == 'incident_photo'){
-                        var photo_data = answers[idx].value
-                        if (photo_data != null){
-                            var encoded_photo_data = photo_data.substring(photo_data.indexOf('base64,')+7);
-                            data[answers[idx].query] = window.atob(encoded_photo_data);
-                        }
-                    } else {
-                        data[answers[idx].query] = answers[idx].value.toString()
-                    }
-                }
-
-                // add personal informations from the settings
-                var settings_data = interviews_conf.getPersonalInfo()
-                if (settings_data.person_first != undefined){
-                    data.person_first = settings_data.person_first
-                }
-                if (settings_data.person_last != undefined){
-                    data.person_last = settings_data.person_last
-                }
-                if (settings_data.person_email != undefined){
-                    data.person_email = settings_data.person_email
-                }
-
-                //console.log(interview.title(), data)
                 $('.status').ajaxError(context.uploadedFailed);
+                 // Check for the various File API support.
+                if (window.File && window.FileReader && window.FileList && window.Blob) {
+                    // Great success! All the File APIs are supported.
+                    var formData = new FormData();
+                    formData.append('task', 'report');
+                    for(var idx in answers) {
+                        answers_idx = answers[idx];
+                        if (answers[idx].query == 'incident_photo'){
+                            var photo_data = answers[idx].value;
+                            if(photo_data!=null){
+                                //blob
+                                blob = context.dataURItoBlob(photo_data);
+                                formData.append("incident_photo[]", blob);
+                            }
+                        } else {
+                            formData.append(answers[idx].query, answers[idx].value.toString());
+                        }
+                    }
 
-                // XXX move the api url in a config file
-                //$.post('http://localhost/ushahidi/api', data,context.uploadedInterview );
-                $.post('http://localhost:8080/api', data, context.uploadedInterview);
-                //$.post('http://174.129.246.207/ushahidi-dev/api', data, context.uploadedInterview);
+
+                    // add personal informations from the settings
+                    var settings_data = interviews_conf.getPersonalInfo()
+                    if (settings_data.person_first != undefined){
+                        formData.append('person_first', settings_data.person_first);
+                    }
+                    if (settings_data.person_last != undefined){
+                        formData.append('person_last', settings_data.person_last);
+                    }
+                    if (settings_data.person_email != undefined){
+                        formData.append('person_email', settings_data.person_email);
+                    }
+
+                    $.ajax({
+                        url: api_url,
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        type: 'POST',
+                        success: function(data, textStatus, jqXHRres){
+                            context.uploadedInterview(data, textStatus, jqXHRres);
+                            interview.posted = true;
+                            persistence.flush();
+                        }
+                    });
+
+
+                } else {
+                    var data = {'task': 'report'};
+
+                    for(var idx in answers) {
+                        value = answers[idx].value
+                        if(value != undefined){
+                            data[answers[idx].query] = value.toString();
+                        }
+                    }
+
+                    // add personal informations from the settings
+                    var settings_data = interviews_conf.getPersonalInfo();
+                    if (settings_data.person_first != undefined){
+                        data.person_first = settings_data.person_first;
+                    }
+                    if (settings_data.person_last != undefined){
+                        data.person_last = settings_data.person_last;
+                    }
+                    if (settings_data.person_email != undefined){
+                        data.person_email = settings_data.person_email;
+                    }
+
+
+                    $.post(api_url,
+                            data,
+                            function(data, textStatus, jqXHRres){
+                                context.uploadedInterview(data, textStatus, jqXHRres);
+                                interview.posted = true;
+                                persistence.flush();
+                            });
+                }
             });
 
         };
     };
 
     context.uploadedFailed = function (event, jqXHR, ajaxSettings, thrownError) {
-        console.log(jqXHR);
         $(this).html('Sync failed: '+jqXHR.statusText);
     };
 
     context.uploadedInterview = function (data, textStatus, jqXHRres) {
         // note: this should be raised only after all interviews are uploaded...
-        console.log(jqXHRres);
+        data = JSON.parse(data);
         if (jqXHRres.success()) {
-            if (data["error"]["code"]=="0")
+            if(data["error"]!=undefined){
+                data = data["error"];
+            }
+            if (data["code"]=="0")
                 $('.status').html('Sync done');
             else
-                $('.status').html('Sync failed: '+data["error"]["message"]);
+                $('.status').html('Sync failed: '+data["message"]);
         } else
             $('.status').html('Sync failed: '+jqXHRres.statusText);
     };
-
-
 })(interviews_db);
 
 // interviews configurations
@@ -132,7 +203,7 @@ var interviews_conf = {};
         if (!localStorage.personal_info)
             localStorage.personal_info = JSON.stringify({});
 
-        $.ajax( "api?task=categories",
+        $.ajax( api_url+"?task=categories",
                 settings={ success: function(ajaxArgs) {
                     localStorage.categories = context.parseCategories(ajaxArgs);
                     interviews_app.updateFormCategories(JSON.parse(localStorage.categories))
@@ -141,7 +212,8 @@ var interviews_conf = {};
     };
 
     context.parseCategories = function(ajaxArgs) {
-        var categories = ajaxArgs.payload.categories
+        data = JSON.parse(ajaxArgs)
+        var categories = data.payload.categories
         return JSON.stringify(categories)
     };
 

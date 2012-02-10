@@ -35,7 +35,7 @@
   <div data-role="content">
 
     <div>
-        <h1>Online Offline Ushahidi Report</h2>
+        <h1>Online Offline Ushahidi Report</h1>
         <p>This simple application use WebSQL or Google Gears enabled browsers
            to store data offline. After the first access the app will be
            available for offline use. The 'upload' button will send the reports
@@ -95,7 +95,7 @@
           <input type="text" name="location_name" id="location_name"/>
         </div>
 
-        <div data-role="fieldcontain">
+        <div data-role="fieldcontain" class="incident_photo_field">
             <label for="incident_photo">Photo</label>
             <input type="file" name="incident_photo" id="incident_photo" onchange="handlePhotoSelect(this.files)" />
             <div id="incident_photo_preview"></div>
@@ -179,7 +179,7 @@
           </div>
 
           <button type="submit">Save</button>
-          
+
       </form>
 
     </div>

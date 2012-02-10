@@ -223,6 +223,13 @@ var interviews_app = {};
         $.mobile.changePage("#dbstatus", "pop");
     };
 
+    context.checkFileSupport = function (event, ui) {
+        if (!window.File && !window.FileReader && !window.FileList) {
+          $('.form-interview').find('.incident_photo_field').hide()
+        }
+    };
+
+
     context.saveSettings = function () {
         $.mobile.changePage("#index");
         interviews_conf.savePersonalInfo({
@@ -258,5 +265,6 @@ $(document).ready(function(){
     interviews_app.initUI();
     $('#interviews').live('pageshow', interviews_app.listingUpdate);
     $('#interviews').live('pagehide', interviews_app.listingHide);
+    $('#new').live('pageshow', interviews_app.checkFileSupport);
     $('#settings').live('pageshow', interviews_app.showSettings);
 })
