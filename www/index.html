@@ -6,7 +6,7 @@
 
     <title>Ushahidi Report Tool</title>
     <link rel="stylesheet" href="./resources/jquery.mobile-1.0a3.min.css" />
-<!--     <link rel="stylesheet" href="/resources/interviews.css" /> -->
+    <link rel="stylesheet" href="./resources/interview.css" />
 
     <!-- geo location -->
     <script src="http://code.google.com/apis/gears/gears_init.js" type="text/javascript" charset="utf-8"></script>
@@ -30,51 +30,40 @@
   </head>
 <body>
 
+<!-- INTRO -->
 <div data-role="page" class="page intro" id="index">
-    <div data-role="header" data-position="inline"
+    <div data-role="header" data-position="inline">
         <h1>ushahidi</h1>
         <a href="#settings" data-icon="gear" class="ui-btn-right">Settings</a>
     </div>
-  <div data-role="content">
 
-    <div>
-        <h1>Online Offline Ushahidi Report</h1>
-        <p>This simple application use WebSQL or Google Gears enabled browsers
-           to store data offline. After the first access the app will be
-           available for offline use. The 'upload' button will send the reports
-           to an Ushahidi site.
-        </p>
-    </div>
+    <div data-role="content">
+        <div class="link-external">
+          <a href="http://www.ushahidi.org">Ushahidi instance</a>
+        </div>
 
-    <div>
-
-      <a href="#new" data-role="button" data-theme="c"
-         class="ui-btn-right">Add report</a>
-
-      <a href="#interviews" data-role="button" data-theme="c"
-         class="ui-btn-right">Reports</a>
-
-      <a href="#upload" data-role="button" data-theme="c"
-         class="ui-btn-right">Upload</a>
-
-      <a href="#settings" data-role="button" data-theme="c"
-         class="ui-btn-right">Settings</a>
-
-      <a id="reset" data-role="button" data-theme="c"
-         class="ui-btn-right">Reset</a>
+        <div>
+            <a href="#new" data-role="button" class="btn-submit">Submit report</a>
+            <a href="#interviews" data-role="button" data-theme="c" class="ui-btn-right">Reports</a>
+            <a href="#upload" data-role="button" data-theme="c" class="ui-btn-right">Upload</a>
+        </div>
 
     </div>
 
-
-    <div data-role="footer" class="ui-bar status"></div>
-
-  </div>
+    <div data-role="footer" class="ui-bar status">
+        <h1>total reports <span class="rv-sent">3</span> <span class="unsent">( <span class="rv-unsent">1</span> unsent )</span></h1>
+    </div>
 </div>
+<!-- -->
 
+
+<!-- NEW -->
 <div data-role="page" id="new">
-  <div data-role="header">
-    <h1>Report incident</h1>
+  <div data-role="header" data-position="inline">
+    <h1>ushahidi</h1>
+    <a href="#settings" data-icon="gear" class="ui-btn-right">Settings</a>
   </div>
+
   <div data-role="content">
     <div>
      <form method="GET" class="form-interview">
@@ -108,12 +97,14 @@
       </form>
 
     </div>
-
-    <a href="#index" data-role="button" data-theme="c" class="ui-btn-right">Home</a>
-
   </div>
 
+    <div data-role="footer" class="ui-bar status">
+        <h1>total reports <span class="rv-sent">3</span> <span class="unsent">( <span class="rv-unsent">1</span> unsent )</span></h1>
+    </div>
+
 </div>
+<!-- -->
 
 
 <div data-role="page" id="interviews">
@@ -140,9 +131,11 @@
     </div>
 
   </div>
-
 </div>
 
+
+
+<!-- UPLOAD -->
 <div data-role="page" id="upload">
   <div data-role="content">
 
@@ -157,42 +150,54 @@
   </div>
 
 </div>
+<!-- -->
 
+
+<!-- SETTINGS -->
 <div data-role="page" id="settings">
-  <div data-role="content">
-
-    <div>
-      <h1>Settings</h1>
-
-      <form method="GET" class="form-settings">
-
-          <div>
-            <label for="person_first">First name</label>
-            <input type="text" name="person_first" id="person_first" />
-          </div>
-
-          <div>
-            <label for="person_last">Last name</label>
-            <input type="text" name="person_last" id="person_last" />
-          </div>
-
-          <div>
-            <label for="person_email">Email</label>
-            <input type="text" name="person_email" id="person_email" />
-          </div>
-
-          <button type="submit">Save</button>
-
-      </form>
-
+    <div data-role="header" data-position="inline"
+        <h1>Settings</h1>
+        <a href="#settings" data-icon="gear" class="ui-btn-right">Settings</a>
     </div>
 
-    <a href="#index" data-role="button" data-theme="c" class="ui-btn-right">Home</a>
+    <div data-role="content">
+        <div>
+          <form method="GET" class="form-settings">
+            <div>
+              <label for="person_first">First name</label>
+              <input type="text" name="person_first" id="person_first" />
+            </div>
 
-  </div>
+            <div>
+              <label for="person_last">Last name</label>
+              <input type="text" name="person_last" id="person_last" />
+            </div>
 
+            <div>
+              <label for="person_email">Email</label>
+              <input type="text" name="person_email" id="person_email" />
+            </div>
+
+            <button type="submit">Save</button>
+          </form>
+        </div>
+
+        <div>
+          <h2>Remove all reports</h2>
+          <p>blah blah blah</p>
+          <a id="reset" data-role="button" data-theme="c"
+               class="ui-btn-right">Reset</a>
+        </div>
+    </div>
+
+    <div data-role="footer" class="ui-bar status">
+        <h1>total reports <span class="rv-sent">3</span> <span class="unsent">( <span class="rv-unsent">1</span> unsent )</span></h1>
+    </div>
 </div>
+<!-- -->
 
+
+<!-- STATUS -->
 <div data-role="page" id="dbstatus">
   <div data-role="content">
       <div class="status"></div>
