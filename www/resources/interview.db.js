@@ -1,5 +1,5 @@
 var api_url = "/api"  // fix for your server
-
+var api_url ="/ushahidi-dev/api" 
 
 var interviews_db = {};
 
@@ -164,7 +164,8 @@ var interviews_db = {};
                                 context.uploadedInterview(data, textStatus, jqXHRres);
                                 interview.posted = true;
                                 persistence.flush();
-                            });
+                            },
+                            'json');
                 }
             });
 
@@ -177,7 +178,6 @@ var interviews_db = {};
 
     context.uploadedInterview = function (data, textStatus, jqXHRres) {
         // note: this should be raised only after all interviews are uploaded...
-        data = JSON.parse(data);
         if (jqXHRres.success()) {
             if(data["error"]!=undefined){
                 data = data["error"];
@@ -204,7 +204,9 @@ var interviews_conf = {};
             localStorage.personal_info = JSON.stringify({});
 
         $.ajax( api_url+"?task=categories",
-                settings={ success: function(ajaxArgs) {
+                settings={ 
+                   dataType:'json',
+                   success: function(ajaxArgs) {
                     localStorage.categories = context.parseCategories(ajaxArgs);
                     interviews_app.updateFormCategories(JSON.parse(localStorage.categories))
                   }
@@ -212,8 +214,7 @@ var interviews_conf = {};
     };
 
     context.parseCategories = function(ajaxArgs) {
-        data = JSON.parse(ajaxArgs)
-        var categories = data.payload.categories
+        var categories = ajaxArgs.payload.categories
         return JSON.stringify(categories)
     };
 
