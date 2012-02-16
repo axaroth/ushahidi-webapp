@@ -30,7 +30,9 @@
 
 	<!-- iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="viewport" content="width=default-width, minimum-scale=0.5, maximum-scale=0.5" />
+    <meta name="viewport" content="width=device-width, minimum-scale=0.5, maximum-scale=0.5" />
+    
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <!-- -->
 
     <link rel="apple-touch-icon" sizes="72x72" href="./resources/images/ipad-icon.png" />
@@ -109,8 +111,8 @@
 <!-- NEW -->
 <div data-role="page" id="new">
     <div data-role="header" data-position="inline">
-      <h1 class="section_title">+ ADD NEW REPORT</h1>
-      <a href="#settings" data-icon="gear" class="ui-btn-right">Settings</a>
+      <h1 class="section_title">ADD NEW REPORT</h1>
+
     </div>
 
     <div data-role="content">
@@ -177,7 +179,7 @@
 <!-- SETTINGS -->
 <div data-role="page" id="settings">
     <div data-role="header" data-position="inline">
-        <h1>Settings</h1>
+        <h1 class="section_title">Settings</h1>
 
         <!--<a href="#settings" data-icon="gear" class="ui-btn-right">Settings</a>-->
     </div>
@@ -185,17 +187,18 @@
     <div data-role="content">
         <div>
           <form method="GET" class="form-settings">
-            <div>
+          
+            <div data-role="fieldcontain">
               <label for="person_first">First name</label>
               <input type="text" name="person_first" id="person_first" />
             </div>
 
-            <div>
+            <div data-role="fieldcontain">
               <label for="person_last">Last name</label>
               <input type="text" name="person_last" id="person_last" />
             </div>
 
-            <div>
+            <div data-role="fieldcontain">
               <label for="person_email">Email</label>
               <input type="text" name="person_email" id="person_email" />
             </div>
@@ -213,9 +216,6 @@
         <div class="status"></div>
     </div>
 
-    <div data-role="footer" class="ui-bar" data-position="fixed">
-        <span>total reports <span class="rv-sent">3</span> <span class="unsent">( <span class="rv-unsent">1</span> unsent )</span></span>
-    </div>
 </div>
 <!-- -->
 

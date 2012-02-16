@@ -41,48 +41,104 @@ body {
 	/* Settings button */
 	#index .ui-header .ui-btn-right {
 		right: 0;
-		top: 30px;
+		top: 22px;
 		position: absolute;
 		
 		-webkit-border-radius: 0;
 		-moz-border-radius: 0;
 		border-radius: 0;
 		
-		background: #252525 url(images/settings-ico.png) no-repeat center right;
+		
+		text-indent: -999em;
+		width: 80px;
+		height: 75px;
 	}
 	
-	/* Back Button 
-	.ui-header .ui-btn-left {
+	/* Back Button */
+	#new .ui-header .ui-btn-left,
+	#settings .ui-header .ui-btn-left {
 		left: 0;
-		top: 30px;
+		top: 20px;
 		position: absolute;
+		
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+		
+		width: 115px;
+		height: 55px;
 	}
 	
-	.ui-header .ui-shadow {
+	    #new .ui-header .ui-btn-left .ui-icon,
+	    #settings .ui-header .ui-btn-left .ui-icon {
+	        display: none;
+	    }
+	
+	    #new .ui-header .ui-btn-left .ui-shadow,
+	    #settings .ui-header .ui-btn-left .ui-shadow {
+	        -moz-box-shadow: none;
+	        -webkit-box-shadow: none;
+	        box-shadow: none;
+	    }
+	    
+	    #new .ui-header .ui-btn-left .ui-btn-inner,
+	    #settings .ui-header .ui-btn-left .ui-btn-inner {
+	        padding-left: 20px;
+	    }
+	    
+	    #new .ui-header .ui-btn-left .ui-btn-corner-all,
+	    #settings .ui-header .ui-btn-left .ui-btn-corner-all {
+	    	/* reset styles */
+	    	-moz-border-radius: 0;
+	    	-webkit-border-radius: 0;
+	    	border-radius: 0;
+
+	    	line-height: 55px;
+	        
+	        font-family: 'BebasNeueRegular';
+	        font-size: 40px;
+	        font-weight: normal;
+	        letter-spacing: 0.05em;
+	        text-align: left;
+	        
+	    	background: #252525;
+	    
+	    	/* border radius */
+	    	-webkit-border-top-right-radius: 6px;
+	    	-webkit-border-bottom-right-radius: 6px;
+	    	-moz-border-radius-topright: 6px;
+	    	-moz-border-radius-bottomright: 6px;
+	    	border-top-right-radius: 6px;
+	    	border-bottom-right-radius: 6px;
+	    }
+	    
+	
+	#index .ui-header .ui-shadow {
 		-moz-box-shadow: none;
 		-webkit-box-shadow: none;
 		box-shadow: none;
 	}
 	
-	.ui-btn-corner-all {
-		 reset styles 
+	#index .ui-btn-corner-all {
+		/* reset styles */
 		-moz-border-radius: 0;
 		-webkit-border-radius: 0;
 		border-radius: 0;
 	
 		 
-		height: 75px;
-		line-height: 75px;
+		/*height: 75px;
+		line-height: 75px;*/
 	
+		background: #252525 url(images/settings-ico.png) no-repeat center right;
 	
-		 border radius 
-		-webkit-border-top-right-radius: 6px;
-		-webkit-border-bottom-right-radius: 6px;
-		-moz-border-radius-topright: 6px;
-		-moz-border-radius-bottomright: 6px;
-		border-top-right-radius: 6px;
-		border-bottom-right-radius: 6px;
-	}*/
+		/* border radius */
+		-webkit-border-top-left-radius: 6px;
+		-webkit-border-bottom-left-radius: 6px;
+		-moz-border-radius-topleft: 6px;
+		-moz-border-radius-bottomleft: 6px;
+		border-top-left-radius: 6px;
+		border-bottom-left-radius: 6px;
+	}
 
 
 /*####################################################################################################################################
@@ -227,57 +283,94 @@ body {
 
 /*####################################################################################################################################
 
-  NEW INTERVIEW 
+  NEW INTERVIEW / SETTINGS
 
 ####################################################################################################################################*/ 
 
-#new .section_title {
+#new .section_title,
+#settings .section_title {
     line-height: 60px;
     font-family: 'BebasNeueRegular';
     font-size: 60px;
     font-weight: normal;
     letter-spacing: 0.05em;
-    color: #353535;
+    color: #353535; /* 952000 */
     text-shadow: none;
 }
 
-#new .ui-content .ui-field-contain {
+#new .ui-content .ui-field-contain,
+#settings .ui-content .ui-field-contain{
     background: #4c4d4f;    
     border-top: 2px solid #5b5c60;
     border-bottom: 2px solid #353638;
     margin: 0;
     
-    padding: 30px 0 30px 20px;
+    padding: 30px 30px 30px 20px;
 }
 
+    #new .ui-content .ui-field-contain input,
+    #new .ui-content .ui-field-contain textarea, 
+    #settings .ui-content .ui-field-contain input,
+    #settings .ui-content .ui-field-contain textarea {
+        font-size: 36px;
+    }
+
     #new .ui-content .ui-field-contain label.ui-input-text,
-    #new .ui-content .ui-field-contain label.ui-select {
+    #new .ui-content .ui-field-contain label.ui-select, 
+    #settings .ui-content .ui-field-contain label.ui-input-text,
+    #settings .ui-content .ui-field-contain label.ui-select{
         font-family: 'BebasNeueRegular';
-        font-size: 28px;
         font-weight: normal;
         letter-spacing: 0.05em;
         color: #fff;
         text-shadow: none;
     }
     
-    #new .ui-content .ui-field-contain label.ui-input-text {
-        line-height: 60px;
+    #new .ui-content .ui-field-contain label.ui-input-text,
+    #settings .ui-content .ui-field-contain label.ui-input-text {
+        font-size: 36px;
+        width: 90%;
     }
     
-    #new .ui-content .ui-field-contain label.ui-select {
-        line-height: 40px;
-    }
+        /* Category Button */
+        #new .ui-content .ui-field-contain label.ui-select {
+            font-size: 36px;
+            width: 90%;
+        }
+        
+        
+        #new .ui-content .ui-field-contain .ui-select {
+            width: 100%;
+           
+            
+        }
+        
+        #new .ui-content .ui-field-contain a.ui-btn {
+            padding-left: 20px;
+            -webkit-border-radius: 12px;
+            -moz-border-radius: 12px;
+            border-radius: 12px;
+            
+            /*margin-right: -15px; /* TO FIX !!! *!/*/
+            
+            background: #f5f5f5;
+            color: #333;
+            border: 0;
+        }
     
     #new .ui-content .ui-field-contain textarea.ui-input-text,
-    #new .ui-content .ui-field-contain input.ui-input-text {
+    #new .ui-content .ui-field-contain input.ui-input-text,
+    #settings .ui-content .ui-field-contain textarea.ui-input-text,
+    #settings .ui-content .ui-field-contain input.ui-input-text {
         -moz-border-radius: 4px;
         -webkit-border-radius: 4px;
         border-radius: 4px;
+        width: 100%;
     }
     
-    #new .ui-content .ui-field-contain input.ui-input-text {
-        height: 60px; /* 60px */
-/*        padding: 10px 0 10px 0;*/
+    #new .ui-content .ui-field-contain input.ui-input-text,
+    #settings .ui-content .ui-field-contain input.ui-input-text {
+        height: 60px; 
     }
     
 
@@ -303,12 +396,17 @@ body {
 
 #new .ui-content .ui-btn {
 	height: 130px;
-	/*width: 620px; 640px */
 	border-top: 2px solid #b9e135;
 	background: #79a81c;
 	margin-bottom: 4px;
 	padding: 0 0 0 20px;
 	line-height: 130px;
+	
+	font-family: 'BebasNeueRegular';
+	font-size: 60px;
+	font-weight: normal;
+	letter-spacing: 0.05em;
+	color: #fff;
 }
 
 	#new .ui-content a.ui-btn {
@@ -319,9 +417,18 @@ body {
 		font-size: 60px;
 		font-weight: normal;
 		letter-spacing: 0.05em;
-		text-align: left;
 	}
 
+
+/*####################################################################################################################################
+
+  SETTINGS
+
+####################################################################################################################################*/
+
+
+
+	
 /*####################################################################################################################################
 
   FOOTER 
