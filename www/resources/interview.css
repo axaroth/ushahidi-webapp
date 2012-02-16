@@ -1,0 +1,216 @@
+/* GLOBAL STYLES */
+body {
+/*	background: #3E3E3E;*/
+	
+}
+
+.ui-page {
+	height: 100%;
+}
+
+/* HEADER */
+.ui-header {
+	height: 134px;
+	display: block;
+	background: #d7c697 url(images/header-bg.png) top left repeat-x;
+	border-bottom: 4px solid #201c22;
+	position: relative;
+}
+
+
+	/* CUSTOM HEADER INDEX */
+	#index .ui-header .logo {
+		height: 81px;
+		width: 302px;
+		background: transparent url(images/ushahidi-logo.png) top left no-repeat;
+		position: absolute;
+		left: 20px;
+		top: 30px;
+	}
+	
+	#index .ui-header .ui-btn-inner {
+		text-indent: -999em;
+		padding: 0;
+		width: 80px;
+		height: 75px;
+		
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+	} 
+	
+	#index .ui-header .ui-btn-right {
+		position: absolute;
+		right: 0;
+		top: 30px;
+	}
+	
+	#index .ui-header .ui-shadow {
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+		
+		box-shadow: none;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+	}
+	
+	#index .ui-header .ui-btn-up-a {
+		border: 0;
+		text-decoration: none;
+		background: transparent;
+	}
+	
+		#index .ui-header .ui-btn-hover-a {
+			border: 0;
+			text-decoration: none;
+			background: transparent;
+		}
+	
+		#index .ui-header .ui-btn-inner.ui-btn-corner-all {
+			background: #252525 url(images/settings-ico.png) no-repeat center right;
+			
+			/* border radius */
+			-webkit-border-top-left-radius: 6px;
+			-webkit-border-bottom-left-radius: 6px;
+			-moz-border-radius-topleft: 6px;
+			-moz-border-radius-bottomleft: 6px;
+			border-top-left-radius: 6px;
+			border-bottom-left-radius: 6px;
+		}
+	
+	/*.ui-header .ui-btn-settings {
+		position: absolute;
+		right: 0;
+		top: 35px;
+		width: 80px;
+		height: 60px;
+		background: #252525 url(images/settings-ico.png) no-repeat center right;
+		text-indent: -999em;
+		
+		/* border radius *!/
+		-webkit-border-top-left-radius: 6px;
+		-webkit-border-bottom-left-radius: 6px;
+		-moz-border-radius-topleft: 6px;
+		-moz-border-radius-bottomleft: 6px;
+		border-top-left-radius: 6px;
+		border-bottom-left-radius: 6px;
+	}*/
+	
+	
+	/* BODY INDEX */
+	.ui-content {
+		padding: 0;
+		margin: 0;
+		background: #3E3E3E;
+		height: 100%;
+	}
+	
+	.ui-content .istance {
+		height: 60px;
+		line-height: 60px;
+		background: url(images/istance-arrow.png) no-repeat center left;
+	} 
+	
+		.ui-content .istance .link {
+			padding: 0 0 0 70px;
+			color: #e6ae00;
+			font-size: 20px;
+			text-shadow: #000 1px 1px 1px;
+			font-weight: bold;
+		}
+	
+	
+	/* CUSTOM BTN SUBMIT HOME */
+	#index .ui-content .ui-btn,
+	#index .ui-content .ui-btn-corner-all,
+	#index .ui-shadow {
+		margin: 0;
+		padding: 0;
+		background: none;
+		border: 0;
+		text-shadow: none;
+		box-shadow: none;
+		
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+		
+		box-shadow: none;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+	}
+	
+	#index .ui-content .ui-btn {
+		height: 130px;
+		/*width: 620px; 640px */
+		border-top: 2px solid #b9e135;
+		background: #79a81c url(images/bg-btn-submit.png) no-repeat center left;
+		margin-bottom: 4px;
+		padding: 0 0 0 20px;
+		line-height: 130px;
+	}
+	
+		#index .ui-content a.ui-btn {
+			color: #fff;
+			text-transform: uppercase;
+			padding-left: 70px;
+			font-family: 'BebasNeueRegular';
+			font-size: 60px;
+			font-weight: normal;
+			letter-spacing: 0.05em;
+			text-align: left;
+		}
+		
+		
+/* NAVIGATION BUTTONS */
+.ui-header .ui-btn-left {
+	left: 0;
+	top: 30px;
+	position: absolute;
+}
+
+.ui-header .ui-shadow {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.ui-btn-corner-all {
+	/* reset styles */
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	
+	/* */
+	height: 75px;
+	line-height: 75px;
+	
+	
+	/* border radius */
+	-webkit-border-top-right-radius: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-radius-topright: 6px;
+	-moz-border-radius-bottomright: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+		
+		
+/* FOOTER */
+.ui-footer {
+	height: 90px;
+	position: absolute;
+	bottom: 0px;
+	background: #252525;
+	line-height: 90px;
+	text-shadow: #000 1px 1px 1px;
+	
+	font-family: 'BebasNeueRegular';
+	font-size: 36px;
+	font-weight: normal;
+	letter-spacing: 0.05em;
+}	
+		.ui-footer .unsent {
+			color: #952000;
+		}
