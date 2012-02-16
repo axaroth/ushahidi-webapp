@@ -15,21 +15,23 @@
     <!-- -->
 
     <script src="./resources/jquery-1.5.min.js"></script>
-    <script src="./resources/jquery.mobile-1.0a3.min.js"></script>
 
     <script src="./resources/gears_init.js"></script>
     <script src="./resources/persistence.js"></script>
     <script src="./resources/persistence.store.sql.js"></script>
     <script src="./resources/persistence.store.websql.js"></script>
 
-    <script src="./resources/interview.mobile.js"></script>
     <script src="./resources/interview.db.js"></script>
+    <script src="./resources/interview.mobile.js"></script>
+
+    <script src="./resources/jquery.mobile-1.0a3.min.js"></script>
+
 
 	<!-- iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="width=default-width, minimum-scale=0.5, maximum-scale=0.5" />
     <!-- -->
-    
+
     <link rel="apple-touch-icon" sizes="72x72" href="./resources/images/ipad-icon.png" />
 
   </head>
@@ -38,42 +40,52 @@
 <!-- INTRO -->
 <div data-role="page" class="page intro" id="index">
     <div data-role="header" data-position="inline">
-	
+
 		<!-- BEGIN .logo -->
 		<div class="logo">
-		
-		
+
+
 		<!-- END .logo -->
 		</div>
 
 		<!-- BEGIN #btn-settings -->
 		<a href="#settings" class="ui-btn-right">Settings</a>
-		
+
 		<!-- END #btn-settings -->
 
     </div>
 
     <div data-role="content">
-    
+
         <!--<div class="link-external">
           <a href="http://www.ushahidi.org">Ushahidi instance</a>
         </div>-->
-        
+
         <!-- BEGIN #istance -->
         <div class="istance">
-        
+
         	<span class="link">Snow Emergency Italy 2012</span>
-        	
+
         <!-- END #istance -->
         </div>
 
         <div>
             <a href="#new" data-role="button" class="btn-submit">Submit report</a>
-            
-            <!--<a href="#interviews" data-role="button" data-theme="c" class="ui-btn-right">Reports</a>
-            <a href="#upload" data-role="button" data-theme="c" class="ui-btn-right">Upload</a>-->
-        
+            <a href="#upload" data-role="button" data-theme="c" class="ui-btn-right">Upload</a>
+
         </div>
+
+        <div id="interview-list">
+            <div data-snippet="interview-item" class="interview-item">
+                <h2 class="incident_title">title</h2>
+                <div>Description: <div class="incident_description">description...</div></div>
+                </br>
+                <div>Date: <span class="incident_date">01/01/2011</span></div>
+                <div>Status: <span class="posted">status</span></div>
+            </div>
+        </div>
+
+        <div class="status"></div>
 
     </div>
 
@@ -86,80 +98,51 @@
 
 <!-- NEW -->
 <div data-role="page" id="new">
-  <div data-role="header" data-position="inline">
-    <h1>ushahidi</h1>
-    <a href="#settings" data-icon="gear" class="ui-btn-right">Settings</a>
-  </div>
-
-  <div data-role="content">
-    <div>
-     <form method="GET" class="form-interview">
-        <div data-role="fieldcontain">
-          <label for="incident_title">Title</label>
-          <input type="text" name="incident_title" id="incident_title"/>
-        </div>
-        <div data-role="fieldcontain">
-          <label for="incident_description">Description</label>
-          <textarea name="incident_description" id="incident_description"></textarea>
-        </div>
-        <div data-role="fieldcontain">
-          <label for="incident_category">Category</label>
-          <select name="incident_category" id="incident_category">
-              <option value="1">category 1</option>
-              <option value="2">category 2</option>
-          </select>
-        </div>
-        <div data-role="fieldcontain">
-          <label for="location_name">Location</label>
-          <input type="text" name="location_name" id="location_name"/>
-        </div>
-
-        <div data-role="fieldcontain" class="incident_photo_field">
-            <label for="incident_photo">Photo</label>
-            <input type="file" name="incident_photo" id="incident_photo" onchange="handlePhotoSelect(this.files)" />
-            <div id="incident_photo_preview"></div>
-        </div>
-
-        <button type="submit">Save</button>
-      </form>
-
+    <div data-role="header" data-position="inline">
+      <h1>ushahidi</h1>
+      <a href="#settings" data-icon="gear" class="ui-btn-right">Settings</a>
     </div>
-  </div>
 
-    <div data-role="footer" class="ui-bar status">
+    <div data-role="content">
+      <div>
+       <form method="GET" class="form-interview">
+          <div data-role="fieldcontain">
+            <label for="incident_title">Title</label>
+            <input type="text" name="incident_title" id="incident_title"/>
+          </div>
+          <div data-role="fieldcontain">
+            <label for="incident_description">Description</label>
+            <textarea name="incident_description" id="incident_description"></textarea>
+          </div>
+          <div data-role="fieldcontain">
+            <label for="incident_category">Category</label>
+            <select name="incident_category" id="incident_category">
+                <option value="1">category 1</option>
+                <option value="2">category 2</option>
+            </select>
+          </div>
+          <div data-role="fieldcontain">
+            <label for="location_name">Location</label>
+            <input type="text" name="location_name" id="location_name"/>
+          </div>
+
+          <div data-role="fieldcontain" class="incident_photo_field">
+              <label for="incident_photo">Photo</label>
+              <input type="file" name="incident_photo" id="incident_photo" onchange="handlePhotoSelect(this.files)" />
+              <div id="incident_photo_preview"></div>
+          </div>
+
+          <button type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <div data-role="footer" class="ui-bar">
         <h1>total reports <span class="rv-sent">3</span> <span class="unsent">( <span class="rv-unsent">1</span> unsent )</span></h1>
     </div>
 
 </div>
 <!-- -->
-
-
-<div data-role="page" id="interviews">
-  <div data-role="content">
-
-    <div>
-      <h1>Reports</h1>
-
-      <div id="interview-list">
-
-        <div data-snippet="interview-item">
-
-            <h2 class="incident_title">title</h2>
-            <div>Description: <div class="incident_description">description...</div></div>
-            </br>
-            <div>Date: <span class="incident_date">01/01/2011</span></div>
-            <div>Status: <span class="posted">status</span></div>
-        </div>
-
-      </div>
-
-      <a href="#index" data-role="button" data-theme="c" class="ui-btn-right">Home</a>
-
-    </div>
-
-  </div>
-</div>
-
 
 
 <!-- UPLOAD -->
@@ -184,7 +167,7 @@
 <div data-role="page" id="settings">
     <div data-role="header" data-position="inline">
         <h1>Settings</h1>
-        
+
         <!--<a href="#settings" data-icon="gear" class="ui-btn-right">Settings</a>-->
     </div>
 
@@ -216,9 +199,11 @@
           <a id="reset" data-role="button" data-theme="c"
                class="ui-btn-right">Reset</a>
         </div>
+
+        <div class="status"></div>
     </div>
 
-    <div data-role="footer" class="ui-bar status">
+    <div data-role="footer" class="ui-bar">
         <h1>total reports <span class="rv-sent">3</span> <span class="unsent">( <span class="rv-unsent">1</span> unsent )</span></h1>
     </div>
 </div>
