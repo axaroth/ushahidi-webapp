@@ -95,7 +95,7 @@ var interviews_app = {};
                           geo_error_callback,
                           {enableHighAccuracy:true});
         $.mobile.changePage("#index");
-        context.setStatus('interview saved');
+        context.setStatusMsg('interview saved');
 
         return false;
     };
@@ -196,10 +196,12 @@ var interviews_app = {};
         else
             msg = "uploaded";
         snippet.find(".posted").text(msg);
-
+        snippet.attr("data-status",msg)
         snippet.show();
         $("#interview-list").append(snippet);
         $("[data-snippet=interview-item]").hide();
+        $('.rv-sent').html($('.interview-item:visible').length);
+        $('.rv-unsent').html($('.interview-item[data-status="to upload"]').length);
     };
 
     context.listingHide = function (event, ui) {
@@ -273,6 +275,9 @@ $(document).bind("mobileinit", function(){
         interviews_app.listingUpdate();
         $('.status').html(interviews_app.getStatusMsg());
         interviews_app.setStatusMsg("");
+        $('.rv-sent').html($('.interview-item:visible').length);
+        $('.rv-unsent').html($('.interview-item[data-status="to upload"]').length);
+
     });
     $('#index').live('pagehide', function(){
         interviews_app.listingHide();

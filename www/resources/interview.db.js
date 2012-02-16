@@ -1,5 +1,6 @@
 var api_url = "/api"  // fix for your server
-var api_url ="/ushahidi-dev/api" 
+//var api_url ="/ushahidi-dev/api"
+var api_url ="/ushahidi/api"
 
 var interviews_db = {};
 
@@ -204,7 +205,7 @@ var interviews_conf = {};
             localStorage.personal_info = JSON.stringify({});
 
         $.ajax( api_url+"?task=categories",
-                settings={ 
+                settings={
                    dataType:'json',
                    success: function(ajaxArgs) {
                     localStorage.categories = context.parseCategories(ajaxArgs);
