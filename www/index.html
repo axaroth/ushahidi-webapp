@@ -7,6 +7,7 @@
     <title>Ushahidi Report Tool</title>
     <link rel="stylesheet" href="./resources/jquery.mobile-1.0a3.min.css" />
     <link rel="stylesheet" href="./resources/interview.css" />
+    <link rel="stylesheet" href="./resources/interview.theme.css" />
     <link rel="stylesheet" href="./resources/font.css" />
 
     <!-- geo location -->
@@ -71,19 +72,28 @@
 
         <div>
             <a href="#new" data-role="button" class="btn-submit">Submit report</a>
-            <a href="#upload" data-role="button" data-theme="c" class="ui-btn-right">Upload</a>
+            <!-- <a href="#upload" data-role="button" data-theme="c" class="ui-btn-right">Upload</a> -->
 
         </div>
 
+        <!-- BEGIN #interview-list -->
         <div id="interview-list">
+            
+            <!-- BEGIN #interview-item -->
             <div data-snippet="interview-item" class="interview-item">
+            
                 <h2 class="incident_title">title</h2>
-                <div>Description: <div class="incident_description">description...</div></div>
-                </br>
-                <div>Date: <span class="incident_date">01/01/2011</span></div>
-                <div>Status: <span class="posted">status</span></div>
+                <div class="incident_description">description...</div>
+                
+                <span class="incident_date">01/01/2011</span>
+                <span class="posted">status</span>
+                
+            <!-- END #interview-item -->
             </div>
+            
+            
         </div>
+        <!-- END #interview-list -->
 
         <div class="status"></div>
 
@@ -99,7 +109,7 @@
 <!-- NEW -->
 <div data-role="page" id="new">
     <div data-role="header" data-position="inline">
-      <h1>ushahidi</h1>
+      <h1 class="section_title">+ ADD NEW REPORT</h1>
       <a href="#settings" data-icon="gear" class="ui-btn-right">Settings</a>
     </div>
 
@@ -133,13 +143,14 @@
           </div>
 
           <button type="submit">Save</button>
+
         </form>
       </div>
     </div>
 
-    <div data-role="footer" class="ui-bar">
-        <h1>total reports <span class="rv-sent">3</span> <span class="unsent">( <span class="rv-unsent">1</span> unsent )</span></h1>
-    </div>
+    <!-- div data-role="footer" class="ui-bar">
+        <span>total reports <span class="rv-sent">3</span> <span class="unsent">( <span class="rv-unsent">1</span> unsent )</span></span>
+    </div> -->
 
 </div>
 <!-- -->
@@ -203,8 +214,8 @@
         <div class="status"></div>
     </div>
 
-    <div data-role="footer" class="ui-bar">
-        <h1>total reports <span class="rv-sent">3</span> <span class="unsent">( <span class="rv-unsent">1</span> unsent )</span></h1>
+    <div data-role="footer" class="ui-bar" data-position="fixed">
+        <span>total reports <span class="rv-sent">3</span> <span class="unsent">( <span class="rv-unsent">1</span> unsent )</span></span>
     </div>
 </div>
 <!-- -->

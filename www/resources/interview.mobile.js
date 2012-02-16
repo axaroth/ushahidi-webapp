@@ -95,7 +95,7 @@ var interviews_app = {};
                           geo_error_callback,
                           {enableHighAccuracy:true});
         $.mobile.changePage("#index");
-        context.setStatus('interview saved');
+        context.setStatusMsg('interview saved');
 
         return false;
     };
