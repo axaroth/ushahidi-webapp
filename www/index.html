@@ -7,6 +7,7 @@
     <title>Ushahidi Report Tool</title>
     <link rel="stylesheet" href="./resources/jquery.mobile-1.0a3.min.css" />
     <link rel="stylesheet" href="./resources/interview.css" />
+    <link rel="stylesheet" href="./resources/font.css" />
 
     <!-- geo location -->
     <script src="http://code.google.com/apis/gears/gears_init.js" type="text/javascript" charset="utf-8"></script>
@@ -24,7 +25,11 @@
     <script src="./resources/interview.mobile.js"></script>
     <script src="./resources/interview.db.js"></script>
 
+	<!-- iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=default-width, minimum-scale=0.5, maximum-scale=0.5" />
+    <!-- -->
+    
     <link rel="apple-touch-icon" sizes="72x72" href="./resources/images/ipad-icon.png" />
 
   </head>
@@ -33,25 +38,47 @@
 <!-- INTRO -->
 <div data-role="page" class="page intro" id="index">
     <div data-role="header" data-position="inline">
-        <h1>ushahidi</h1>
-        <a href="#settings" data-icon="gear" class="ui-btn-right">Settings</a>
+	
+		<!-- BEGIN .logo -->
+		<div class="logo">
+		
+		
+		<!-- END .logo -->
+		</div>
+
+		<!-- BEGIN #btn-settings -->
+		<a href="#settings" class="ui-btn-right">Settings</a>
+		
+		<!-- END #btn-settings -->
+
     </div>
 
     <div data-role="content">
-        <div class="link-external">
+    
+        <!--<div class="link-external">
           <a href="http://www.ushahidi.org">Ushahidi instance</a>
+        </div>-->
+        
+        <!-- BEGIN #istance -->
+        <div class="istance">
+        
+        	<span class="link">Snow Emergency Italy 2012</span>
+        	
+        <!-- END #istance -->
         </div>
 
         <div>
             <a href="#new" data-role="button" class="btn-submit">Submit report</a>
-            <a href="#interviews" data-role="button" data-theme="c" class="ui-btn-right">Reports</a>
-            <a href="#upload" data-role="button" data-theme="c" class="ui-btn-right">Upload</a>
+            
+            <!--<a href="#interviews" data-role="button" data-theme="c" class="ui-btn-right">Reports</a>
+            <a href="#upload" data-role="button" data-theme="c" class="ui-btn-right">Upload</a>-->
+        
         </div>
 
     </div>
 
     <div data-role="footer" class="ui-bar status">
-        <h1>total reports <span class="rv-sent">3</span> <span class="unsent">( <span class="rv-unsent">1</span> unsent )</span></h1>
+        <span>total reports <span class="rv-sent">3</span> <span class="unsent">( <span class="rv-unsent">1</span> unsent )</span></span>
     </div>
 </div>
 <!-- -->
@@ -155,9 +182,10 @@
 
 <!-- SETTINGS -->
 <div data-role="page" id="settings">
-    <div data-role="header" data-position="inline"
+    <div data-role="header" data-position="inline">
         <h1>Settings</h1>
-        <a href="#settings" data-icon="gear" class="ui-btn-right">Settings</a>
+        
+        <!--<a href="#settings" data-icon="gear" class="ui-btn-right">Settings</a>-->
     </div>
 
     <div data-role="content">
