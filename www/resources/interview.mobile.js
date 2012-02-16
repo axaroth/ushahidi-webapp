@@ -69,7 +69,6 @@ function handlePhotoSelect(files) {
 
 
 // --
-var status_msg = "";
 var interviews_app = {};
 
 (function(context) {
@@ -95,7 +94,7 @@ var interviews_app = {};
                           geo_error_callback,
                           {enableHighAccuracy:true});
         $.mobile.changePage("#index");
-        context.setStatusMsg('interview saved');
+        $('.status').html('interview saved');
 
         return false;
     };
@@ -172,6 +171,8 @@ var interviews_app = {};
 
         persistence.flush();
         //context.updateStatus('done');
+
+        interviews_db.postInterview(interview)
     };
 
     context.listingUpdate = function (event, ui) {
@@ -179,7 +180,6 @@ var interviews_app = {};
         allInterviews.list(null, function (results) {
             results.forEach(context.showInterview)
         });
-        $('.status').html('');
     };
 
     context.showInterview = function (interview) {
@@ -191,14 +191,18 @@ var interviews_app = {};
             snippet.find("." + answer.query).text(answer.value);
         });
 
-        if (interview.posted == false)
+        if (interview.posted == false){
             msg = "to upload";
-        else
+            $(".interview-list-toup").prepend(snippet);
+            $(".upload-btn:hidden").show();
+        }else{
             msg = "uploaded";
+            $(".interview-list-uploaded").prepend(snippet);
+        }
         snippet.find(".posted").text(msg);
         snippet.attr("data-status",msg)
         snippet.show();
-        $("#interview-list").append(snippet);
+
         $("[data-snippet=interview-item]").hide();
         $('.rv-sent').html($('.interview-item:visible').length);
         $('.rv-unsent').html($('.interview-item[data-status="to upload"]').length);
@@ -250,13 +254,6 @@ var interviews_app = {};
         $('#person_email').val(settings.person_email);
     };
 
-    context.setStatusMsg = function (msg){
-        status_msg = msg;
-    }
-    context.getStatusMsg = function(){
-        return status_msg;
-    }
-
 })(interviews_app);
 
 // init app
@@ -273,18 +270,19 @@ $(document).bind("mobileinit", function(){
 
     $('#index').live('pageshow', function(){
         interviews_app.listingUpdate();
-        $('.status').html(interviews_app.getStatusMsg());
-        interviews_app.setStatusMsg("");
         $('.rv-sent').html($('.interview-item:visible').length);
         $('.rv-unsent').html($('.interview-item[data-status="to upload"]').length);
 
     });
     $('#index').live('pagehide', function(){
         interviews_app.listingHide();
-        $('.status').html(interviews_app.getStatusMsg());
     });
     $('#new').live('pageshow', interviews_app.checkFileSupport);
     $('#settings').live('pageshow', interviews_app.showSettings);
+    $('#settings').live('pagehide', function(){
+        $('.setting-status').html('')
+    });
+
 })
 
 $(document).ready(function(){

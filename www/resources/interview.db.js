@@ -30,7 +30,7 @@ var interviews_db = {};
         // reset DB
         $('#reset').click(function() {
             context.resetDB();
-            $('.status').html('Reset complete');
+            $('.setting-status').html('Reset complete');
             return false;
         });
 
@@ -40,6 +40,8 @@ var interviews_db = {};
             context.uploadDB();
             return false;
         });
+
+
     };
 
     context.resetDB = function () {
@@ -60,6 +62,7 @@ var interviews_db = {};
         allInterviews.list(null, function (results) {
             results.forEach(context.postInterview)
         });
+
 
     };
 

@@ -15,7 +15,7 @@ body {
 
 /*####################################################################################################################################
 
-  HEADER 
+  HEADER
 
 ####################################################################################################################################*/
 
@@ -43,39 +43,39 @@ body {
 		right: 0;
 		top: 30px;
 		position: absolute;
-		
+
 		-webkit-border-radius: 0;
 		-moz-border-radius: 0;
 		border-radius: 0;
-		
+
 		background: #252525 url(images/settings-ico.png) no-repeat center right;
 	}
-	
-	/* Back Button 
+
+	/* Back Button
 	.ui-header .ui-btn-left {
 		left: 0;
 		top: 30px;
 		position: absolute;
 	}
-	
+
 	.ui-header .ui-shadow {
 		-moz-box-shadow: none;
 		-webkit-box-shadow: none;
 		box-shadow: none;
 	}
-	
+
 	.ui-btn-corner-all {
-		 reset styles 
+		 reset styles
 		-moz-border-radius: 0;
 		-webkit-border-radius: 0;
 		border-radius: 0;
-	
-		 
+
+
 		height: 75px;
 		line-height: 75px;
-	
-	
-		 border radius 
+
+
+		 border radius
 		-webkit-border-top-right-radius: 6px;
 		-webkit-border-bottom-right-radius: 6px;
 		-moz-border-radius-topright: 6px;
@@ -87,7 +87,7 @@ body {
 
 /*####################################################################################################################################
 
-  CONTENT 
+  CONTENT
 
 ####################################################################################################################################*/
 
@@ -101,7 +101,7 @@ body {
 
 /*####################################################################################################################################
 
-  INDEX 
+  INDEX
 
 ####################################################################################################################################*/
 
@@ -161,20 +161,20 @@ body {
 		letter-spacing: 0.05em;
 		text-align: left;
 	}
-	
-	
+
+
 /* Interview item */
 .interview-item {
     height: 86px; /* 90px */
-    
+
     background: #f5f5f5 url(images/list-arrow.png) no-repeat center right;
     border-top: 2px solid #fff;
     border-bottom: 2px solid #ebebeb;
-    
+
     margin-bottom: 4px;
     padding: 0 0 0 20px;
     position: relative;
-    
+
 }
 
     .interview-item:nth-child(even) {
@@ -182,8 +182,8 @@ body {
         border-bottom: 2px solid #e2d1a6;
         background: #f5efdf url(images/list-arrow.png) no-repeat center right;
     }
-    
-    .interview-item .incident_title { 
+
+    .interview-item .incident_title {
         padding-top: 14px;
         padding-bottom: 8px;
         display: block;
@@ -193,14 +193,14 @@ body {
         letter-spacing: 0.05em;
         margin: 0;
     }
-    
+
     .interview-item .incident_description {
         color: #444;
         font-size: 18px;
         font-weight: bold;
     }
-    
-    
+
+
     .interview-item .incident_date {
     	position: absolute;
     	bottom: 16px;
@@ -212,8 +212,8 @@ body {
     	text-align: right;
     	font-weight: bold;
     }
-    
-    .interview-item .posted {
+
+    .interview-item[data-status="to upload"] .posted {
     	position: absolute;
     	width: 38px;
     	height: 86px;
@@ -227,9 +227,9 @@ body {
 
 /*####################################################################################################################################
 
-  NEW INTERVIEW 
+  NEW INTERVIEW
 
-####################################################################################################################################*/ 
+####################################################################################################################################*/
 
 #new .section_title {
     line-height: 60px;
@@ -242,11 +242,11 @@ body {
 }
 
 #new .ui-content .ui-field-contain {
-    background: #4c4d4f;    
+    background: #4c4d4f;
     border-top: 2px solid #5b5c60;
     border-bottom: 2px solid #353638;
     margin: 0;
-    
+
     padding: 30px 0 30px 20px;
 }
 
@@ -259,27 +259,27 @@ body {
         color: #fff;
         text-shadow: none;
     }
-    
+
     #new .ui-content .ui-field-contain label.ui-input-text {
         line-height: 60px;
     }
-    
+
     #new .ui-content .ui-field-contain label.ui-select {
         line-height: 40px;
     }
-    
+
     #new .ui-content .ui-field-contain textarea.ui-input-text,
     #new .ui-content .ui-field-contain input.ui-input-text {
         -moz-border-radius: 4px;
         -webkit-border-radius: 4px;
         border-radius: 4px;
     }
-    
+
     #new .ui-content .ui-field-contain input.ui-input-text {
         height: 60px; /* 60px */
 /*        padding: 10px 0 10px 0;*/
     }
-    
+
 
 /* Content Save Button */
 #new .ui-content .ui-btn,
@@ -324,7 +324,7 @@ body {
 
 /*####################################################################################################################################
 
-  FOOTER 
+  FOOTER
 
 ####################################################################################################################################*/
 
@@ -340,7 +340,7 @@ body {
 	font-size: 36px;
 	font-weight: normal;
 	letter-spacing: 0.05em;
-	
+
 	width: auto;
 }
 		.ui-footer .unsent {
