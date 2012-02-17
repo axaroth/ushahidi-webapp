@@ -190,9 +190,13 @@
     <div data-role="content">
         <div>
         
-          <div data-role="fieldcontain">
+          <div data-role="fieldcontain" class="warningbox">
             <label for="person_first">Warning</label>
-            <span class="description">Do not clear the cache if want to use this application offline</span>
+            <span class="description">Do not clear the cache if want to use this application offline.</span>
+          </div>
+          
+          <div data-role="fieldcontain">
+            <span class="description big">Leave these fields blank if you want to send anonymous reports:</span>
           </div>
             
           <form method="GET" class="form-settings">
@@ -221,8 +225,8 @@
             <!-- BEGIN .removebox -->
             <div class="removebox">
               
-              <span class="removelabel">Remove all reports</span>
-              <span class="description">Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed.</span>
+              <span class="removelabel">Reset</span>
+              <span class="description">will delete all reports both sent and unsent.</span>
             
             <!-- END .removebox -->
             </div>
