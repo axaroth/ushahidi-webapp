@@ -73,7 +73,7 @@
         </div>
 
         <div>
-            <a href="#new" data-role="button" class="btn-submit">Submit report</a>
+            <a href="#new" data-role="button" class="btn-submit"><div class="submit-report">Submit report</div></a>
             <!-- <a href="#upload" data-role="button" data-theme="c" class="ui-btn-right">Upload</a> -->
 
         </div>
@@ -83,21 +83,24 @@
             
             <!-- BEGIN #interview-item -->
           <div data-snippet="interview-item" class="interview-item" style="display:none">
-
+                
+                <a href="#reportview">
+                
                 <h2 class="incident_title">title</h2>
                 <div class="incident_description">description...</div>
                 
                 <span class="incident_date">01/01/2011</span>
                 <span class="posted">status</span>
                 
+                </a>
+                
             <!-- END #interview-item -->
             </div>
-            
             
         </div>
         <!-- END #interview-list -->
 
-        <div class="status"></div>
+        <!-- <div class="status"></div> -->
 
     </div>
 
@@ -144,7 +147,7 @@
               <div id="incident_photo_preview"></div>
           </div>
 
-          <button type="submit">Save</button>
+          <button type="submit">SEND</button>
 
         </form>
       </div>
@@ -186,6 +189,12 @@
 
     <div data-role="content">
         <div>
+        
+          <div data-role="fieldcontain">
+            <label for="person_first">Warning</label>
+            <span class="description">Do not clear the cache if want to use this application offline</span>
+          </div>
+            
           <form method="GET" class="form-settings">
           
             <div data-role="fieldcontain">
@@ -208,12 +217,38 @@
         </div>
 
         <div>
-          <h2>Remove all reports</h2>
-          <p>blah blah blah</p>
+        
+            <!-- BEGIN .removebox -->
+            <div class="removebox">
+              
+              <span class="removelabel">Remove all reports</span>
+              <span class="description">Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed.</span>
+            
+            <!-- END .removebox -->
+            </div>
+          
           <a id="reset" data-role="button" class="ui-btn-right">Reset</a>
         </div>
 
         <div class="status"></div>
+    </div>
+
+</div>
+<!-- -->
+
+
+<!-- REPORTVIEW -->
+<div data-role="page" id="reportview">
+
+    <div data-role="header" data-position="inline">
+        <h1 class="section_title">Settings</h1>
+
+        <!--<a href="#settings" data-icon="gear" class="ui-btn-right">Settings</a>-->
+    </div>
+
+    <div data-role="content">
+        
+        
     </div>
 
 </div>
