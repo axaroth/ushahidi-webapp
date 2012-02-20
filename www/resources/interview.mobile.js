@@ -193,24 +193,41 @@ var interviews_app = {};
 
         if (interview.posted == false){
             msg = "to upload";
+            snippet.find(".posted").text(msg);
             $(".interview-list-toup").prepend(snippet);
             $(".upload-btn:hidden").show();
         }else{
             msg = "uploaded";
+            snippet.find(".posted").remove();
             $(".interview-list-uploaded").prepend(snippet);
         }
-        snippet.find(".posted").text(msg);
         snippet.attr("data-status",msg)
+        snippet.attr("data-id", interview.id)
         snippet.show();
 
         $("[data-snippet=interview-item]").hide();
         $('.rv-sent').html($('.interview-item:visible').length);
-        $('.rv-unsent').html($('.interview-item[data-status="to upload"]').length);
+
+        unsent = $('.interview-item[data-status="to upload"]').length
+        if (unsent > 0){
+            $('.rv-unsent').html($('.interview-item[data-status="to upload"]').length);
+            $('.unsent').show()
+        }
+
+        $(snippet).find("a").click(function(e){
+            $("#reportview div[data-role='content']").append($($(this).children()).clone());
+            $("#reportview div[data-role='content'] .incident_date:first").remove();
+            img_data = $("#reportview div[data-role='content'] .incident_photo").text();
+            var img_el = $("<img/>");
+            img_el.attr('src', img_data);
+            $("#reportview div[data-role='content'] .incident_photo").html(img_el);
+            $("#reportview div[data-role='content'] .incident_photo").append("<img")
+            $("#reportview div[data-role='content'] .interview-item-ct").show();
+        })
     };
 
     context.listingHide = function (event, ui) {
         $("#interview-list").find('div[data-snippet!=interview-item].interview-item').remove();
-
     };
 
     context.updateFormCategories = function (categories) {
@@ -268,20 +285,36 @@ $(document).bind("mobileinit", function(){
         alert("Functionality not available");
     }
 
-    $('#index').live('pageshow', function(){
+    $('#index').live('pagebeforeshow', function(){
         interviews_app.listingUpdate();
         $('.rv-sent').html($('.interview-item:visible').length);
-        $('.rv-unsent').html($('.interview-item[data-status="to upload"]').length);
-
+        unsent = $('.interview-item[data-status="to upload"]').length
+        if (unsent > 0){
+            $('.rv-unsent').html($('.interview-item[data-status="to upload"]').length);
+            $('.unsent').show()
+        }else{
+            $('.unsent').hide()
+            $('.upload-btn').hide()
+        }
     });
     $('#index').live('pagehide', function(){
         interviews_app.listingHide();
     });
+
     $('#new').live('pageshow', interviews_app.checkFileSupport);
+
+    $("#reportview").live("pagehide",function(){
+        $("#reportview div[data-role='content']").empty()
+    })
+
     $('#settings').live('pageshow', interviews_app.showSettings);
     $('#settings').live('pagehide', function(){
         $('.setting-status').html('')
     });
+
+    $("#empty").live("pageshow",function(){
+        $.mobile.changePage("#index","none")
+    })
 
 })
 

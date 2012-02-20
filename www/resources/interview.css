@@ -12,6 +12,11 @@ body {
 	background: #3E3E3E;
 }
 
+.pop.in {
+    -webkit-transform: scale(1.5);
+    -webkit-animation-name: none;
+}
+
 
 /*####################################################################################################################################
 
@@ -41,48 +46,94 @@ body {
 	/* Settings button */
 	#index .ui-header .ui-btn-right {
 		right: 0;
-		top: 30px;
+		top: 22px;
 		position: absolute;
 
 		-webkit-border-radius: 0;
 		-moz-border-radius: 0;
 		border-radius: 0;
 
-		background: #252525 url(images/settings-ico.png) no-repeat center right;
+
+		text-indent: -999em;
+		width: 80px;
+		height: 75px;
 	}
 
-	/* Back Button
+	/* Back Button */
 	.ui-header .ui-btn-left {
 		left: 0;
-		top: 30px;
+		top: 22px;
 		position: absolute;
+
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+
+		width: 115px;
+		height: 50px;
 	}
 
-	.ui-header .ui-shadow {
+.ui-header .ui-btn-left .ui-icon {display: none;}
+.ui-header .ui-btn-left .ui-shadow {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.ui-header .ui-btn-left .ui-btn-inner {padding-left: 20px;}
+
+.ui-header .ui-btn-left .ui-btn-corner-all {
+  /* reset styles */
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+
+  line-height: 55px;
+
+    font-family: 'BebasNeueRegular';
+    font-size: 40px;
+    font-weight: normal;
+    letter-spacing: 0.05em;
+    text-align: left;
+
+  background: #252525;
+
+  /* border radius */
+  -webkit-border-top-right-radius: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  -moz-border-radius-topright: 6px;
+  -moz-border-radius-bottomright: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+
+	#index .ui-header .ui-shadow {
 		-moz-box-shadow: none;
 		-webkit-box-shadow: none;
 		box-shadow: none;
 	}
 
-	.ui-btn-corner-all {
-		 reset styles
+	#index .ui-btn-corner-all {
+		/* reset styles */
 		-moz-border-radius: 0;
 		-webkit-border-radius: 0;
 		border-radius: 0;
 
 
-		height: 75px;
-		line-height: 75px;
+		/*height: 75px;
+		line-height: 75px;*/
 
+		background: #252525 url(images/settings-ico.png) no-repeat center right;
 
-		 border radius
-		-webkit-border-top-right-radius: 6px;
-		-webkit-border-bottom-right-radius: 6px;
-		-moz-border-radius-topright: 6px;
-		-moz-border-radius-bottomright: 6px;
-		border-top-right-radius: 6px;
-		border-bottom-right-radius: 6px;
-	}*/
+		/* border radius */
+		-webkit-border-top-left-radius: 6px;
+		-webkit-border-bottom-left-radius: 6px;
+		-moz-border-radius-topleft: 6px;
+		-moz-border-radius-bottomleft: 6px;
+		border-top-left-radius: 6px;
+		border-bottom-left-radius: 6px;
+	}
 
 
 /*####################################################################################################################################
@@ -122,6 +173,11 @@ body {
 
 
 /* Content Submit Button */
+#index .ui-content .submit-report {
+    background: url(images/bg-btn-submit.png) no-repeat center left;
+}
+
+
 #index .ui-content .ui-btn,
 #index .ui-content .ui-btn-corner-all,
 #index .ui-shadow {
@@ -143,38 +199,91 @@ body {
 
 #index .ui-content .ui-btn {
 	height: 130px;
-	/*width: 620px; 640px */
-	border-top: 2px solid #b9e135;
-	background: #79a81c url(images/bg-btn-submit.png) no-repeat center left;
+	border-top: 2px solid #cadf3c;/*#b9e135;*/
+	border-bottom: 2px solid #57970f;
 	margin-bottom: 4px;
-	padding: 0 0 0 20px;
 	line-height: 130px;
+
+    background-image: -webkit-gradient(linear, left top, left bottom, from( #b3ce33 /*{a-bar-background-start}*/), to( #79a81c /*{a-bar-background-end}*/)); /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient( #b3ce33 /*{a-bar-background-start}*/, #79a81c /*{a-bar-background-end}*/); /* Chrome 10+, Saf5.1+ */
+    background-image:    -moz-linear-gradient( #b3ce33 /*{a-bar-background-start}*/, #79a81c /*{a-bar-background-end}*/); /* FF3.6 */
+    background-image:     -ms-linear-gradient( #b3ce33 /*{a-bar-background-start}*/, #79a81c /*{a-bar-background-end}*/); /* IE10 */
+    background-image:      -o-linear-gradient( #b3ce33 /*{a-bar-background-start}*/, #79a81c /*{a-bar-background-end}*/); /* Opera 11.10+ */
+    background-image:         linear-gradient( #b3ce33 /*{a-bar-background-start}*/, #79a81c /*{a-bar-background-end}*/);
 }
+
+    #index .ui-content .ui-btn:hover {
+    	height: 130px;
+    	border-top: 2px solid #cadf3c;/*#b9e135;*/
+    	border-bottom: 2px solid #57970f;
+    	margin-bottom: 4px;
+    	line-height: 130px;
+
+        background-image: -webkit-gradient(linear, left top, left bottom, from( #79a81c /*{a-bar-background-start}*/), to( #b3ce33 /*{a-bar-background-end}*/)); /* Saf4+, Chrome */
+        background-image: -webkit-linear-gradient( #79a81c /*{a-bar-background-start}*/, #b3ce33 /*{a-bar-background-end}*/); /* Chrome 10+, Saf5.1+ */
+        background-image:    -moz-linear-gradient( #79a81c /*{a-bar-background-start}*/, #b3ce33 /*{a-bar-background-end}*/); /* FF3.6 */
+        background-image:     -ms-linear-gradient( #79a81c /*{a-bar-background-start}*/, #b3ce33 /*{a-bar-background-end}*/); /* IE10 */
+        background-image:      -o-linear-gradient( #79a81c /*{a-bar-background-start}*/, #b3ce33 /*{a-bar-background-end}*/); /* Opera 11.10+ */
+        background-image:         linear-gradient( #79a81c /*{a-bar-background-start}*/, #b3ce33 /*{a-bar-background-end}*/);
+    }
+
 
 	#index .ui-content a.ui-btn {
 		color: #fff;
 		text-transform: uppercase;
-		padding-left: 70px;
 		font-family: 'BebasNeueRegular';
 		font-size: 60px;
 		font-weight: normal;
 		letter-spacing: 0.05em;
-		text-align: left;
+		text-align: center;
+		text-decoration: none;
+	}
+
+
+#index .ui-content .upload-btn .ui-btn {
+	height: 50px;
+	border-top: 2px solid #d6141a;/*#b9e135;*/
+	border-bottom: 2px solid #b9000f;
+	margin-bottom: 10px;
+	line-height: 50px;
+
+    background-image: -webkit-gradient(linear, left top, left bottom, from( #d6141a /*{a-bar-background-start}*/), to( #b9000f /*{a-bar-background-end}*/)); /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient( #d6141a /*{a-bar-background-start}*/, #b9000f /*{a-bar-background-end}*/); /* Chrome 10+, Saf5.1+ */
+    background-image:    -moz-linear-gradient( #d6141a /*{a-bar-background-start}*/, #b9000f /*{a-bar-background-end}*/); /* FF3.6 */
+    background-image:     -ms-linear-gradient( #d6141a /*{a-bar-background-start}*/, #b9000f /*{a-bar-background-end}*/); /* IE10 */
+    background-image:      -o-linear-gradient( #d6141a /*{a-bar-background-start}*/, #b9000f /*{a-bar-background-end}*/); /* Opera 11.10+ */
+    background-image:         linear-gradient( #d6141a /*{a-bar-background-start}*/, #b9000f /*{a-bar-background-end}*/);
+}
+
+#index .ui-content .upload-btn .ui-btn:hover {
+     background-image: -webkit-gradient(linear, left top, left bottom, from( #b9000f /*{a-bar-background-start}*/), to( #d6141a /*{a-bar-background-end}*/)); /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient( #b9000f /*{a-bar-background-start}*/, #d6141a /*{a-bar-background-end}*/); /* Chrome 10+, Saf5.1+ */
+    background-image:    -moz-linear-gradient( #b9000f /*{a-bar-background-start}*/, #d6141a /*{a-bar-background-end}*/); /* FF3.6 */
+    background-image:     -ms-linear-gradient( #b9000f /*{a-bar-background-start}*/, #d6141a /*{a-bar-background-end}*/); /* IE10 */
+    background-image:      -o-linear-gradient( #b9000f /*{a-bar-background-start}*/, #d6141a /*{a-bar-background-end}*/); /* Opera 11.10+ */
+    background-image:         linear-gradient( #b9000f /*{a-bar-background-start}*/, #d6141a /*{a-bar-background-end}*/);
+}
+
+	#index .ui-content a.ui-btn {
+		font-size: 40px;
 	}
 
 
 /* Interview item */
 .interview-item {
     height: 86px; /* 90px */
-
     background: #f5f5f5 url(images/list-arrow.png) no-repeat center right;
     border-top: 2px solid #fff;
     border-bottom: 2px solid #ebebeb;
-
     margin-bottom: 4px;
     padding: 0 0 0 20px;
     position: relative;
+}
+.interview-item-ct{display:none}
 
+.interview-item .ui-link {
+    text-decoration: none;
+    color: #000;
 }
 
     .interview-item:nth-child(even) {
@@ -212,8 +321,11 @@ body {
     	text-align: right;
     	font-weight: bold;
     }
+    .interview-item[data-status='uploaded'] .incident_date {
+    	right: 62px;
+    }
 
-    .interview-item[data-status="to upload"] .posted {
+    .interview-item .posted {
     	position: absolute;
     	width: 38px;
     	height: 86px;
@@ -225,59 +337,100 @@ body {
     }
 
 
+
 /*####################################################################################################################################
 
-  NEW INTERVIEW
+  NEW INTERVIEW / SETTINGS
 
 ####################################################################################################################################*/
-
-#new .section_title {
+#reportview .incident_title,
+.ui-header .ui-title.section_title {
     line-height: 60px;
     font-family: 'BebasNeueRegular';
     font-size: 60px;
     font-weight: normal;
     letter-spacing: 0.05em;
-    color: #353535;
+    color: #353535; /* 952000 */
     text-shadow: none;
 }
 
-#new .ui-content .ui-field-contain {
+#new .ui-content .ui-field-contain,
+#settings .ui-content .ui-field-contain{
     background: #4c4d4f;
     border-top: 2px solid #5b5c60;
     border-bottom: 2px solid #353638;
     margin: 0;
 
-    padding: 30px 0 30px 20px;
+    padding: 30px 30px 30px 20px;
 }
 
+    #new .ui-content .ui-field-contain input,
+    #new .ui-content .ui-field-contain textarea,
+    #settings .ui-content .ui-field-contain input,
+    #settings .ui-content .ui-field-contain textarea {
+        font-size: 36px;
+    }
+
     #new .ui-content .ui-field-contain label.ui-input-text,
-    #new .ui-content .ui-field-contain label.ui-select {
+    #new .ui-content .ui-field-contain label.ui-select,
+    #settings .ui-content .ui-field-contain label.ui-input-text,
+    #settings .ui-content .ui-field-contain label.ui-select{
         font-family: 'BebasNeueRegular';
-        font-size: 28px;
         font-weight: normal;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.1em;
         color: #fff;
         text-shadow: none;
     }
 
-    #new .ui-content .ui-field-contain label.ui-input-text {
-        line-height: 60px;
+    #new .ui-content .ui-field-contain label.ui-input-text,
+    #settings .ui-content .ui-field-contain label.ui-input-text {
+        font-size: 36px;
+        width: 90%;
     }
 
-    #new .ui-content .ui-field-contain label.ui-select {
-        line-height: 40px;
-    }
+        /* Category Button */
+        #new .ui-content .ui-field-contain label.ui-select {
+            font-size: 36px;
+            width: 90%;
+        }
+
+
+        #new .ui-content .ui-field-contain .ui-select {
+            width: 100%;
+
+
+        }
+
+        #new .ui-content .ui-field-contain a.ui-btn {
+            padding-left: 20px;
+            -webkit-border-radius: 12px;
+            -moz-border-radius: 12px;
+            border-radius: 12px;
+
+            background: #f5f5f5;
+            color: #333;
+            border: 0;
+        }
 
     #new .ui-content .ui-field-contain textarea.ui-input-text,
-    #new .ui-content .ui-field-contain input.ui-input-text {
+    #new .ui-content .ui-field-contain input.ui-input-text,
+    #settings .ui-content .ui-field-contain textarea.ui-input-text,
+    #settings .ui-content .ui-field-contain input.ui-input-text {
         -moz-border-radius: 4px;
         -webkit-border-radius: 4px;
         border-radius: 4px;
+        width: 100%;
+        padding-right: 0;
     }
 
-    #new .ui-content .ui-field-contain input.ui-input-text {
-        height: 60px; /* 60px */
-/*        padding: 10px 0 10px 0;*/
+    #new .ui-content .ui-field-contain textarea.ui-input-text {
+        height: 120px;
+    }
+
+    #new .ui-content .ui-field-contain input.ui-input-text,
+    #settings .ui-content .ui-field-contain input.ui-input-text {
+        height: 60px;
+        padding-right: 0;
     }
 
 
@@ -303,13 +456,43 @@ body {
 
 #new .ui-content .ui-btn {
 	height: 130px;
-	/*width: 620px; 640px */
-	border-top: 2px solid #b9e135;
-	background: #79a81c;
+
+	border-top: 2px solid #cadf3c;/*#b9e135;*/
+	border-bottom: 2px solid #57970f;
+
+	background-image: -webkit-gradient(linear, left top, left bottom, from( #b3ce33 /*{a-bar-background-start}*/), to( #79a81c /*{a-bar-background-end}*/)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient( #b3ce33 /*{a-bar-background-start}*/, #79a81c /*{a-bar-background-end}*/); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient( #b3ce33 /*{a-bar-background-start}*/, #79a81c /*{a-bar-background-end}*/); /* FF3.6 */
+	background-image:     -ms-linear-gradient( #b3ce33 /*{a-bar-background-start}*/, #79a81c /*{a-bar-background-end}*/); /* IE10 */
+	background-image:      -o-linear-gradient( #b3ce33 /*{a-bar-background-start}*/, #79a81c /*{a-bar-background-end}*/); /* Opera 11.10+ */
+	background-image:         linear-gradient( #b3ce33 /*{a-bar-background-start}*/, #79a81c /*{a-bar-background-end}*/);
+
 	margin-bottom: 4px;
 	padding: 0 0 0 20px;
 	line-height: 130px;
+
+	font-family: 'BebasNeueRegular';
+	font-size: 60px;
+	font-weight: normal;
+	letter-spacing: 0.05em;
+	color: #fff;
 }
+
+    #new .ui-content .ui-btn:hover {
+    	height: 130px;
+    	border-top: 2px solid #cadf3c;/*#b9e135;*/
+    	border-bottom: 2px solid #57970f;
+    	margin-bottom: 4px;
+    	line-height: 130px;
+
+        background-image: -webkit-gradient(linear, left top, left bottom, from( #79a81c /*{a-bar-background-start}*/), to( #b3ce33 /*{a-bar-background-end}*/)); /* Saf4+, Chrome */
+        background-image: -webkit-linear-gradient( #79a81c /*{a-bar-background-start}*/, #b3ce33 /*{a-bar-background-end}*/); /* Chrome 10+, Saf5.1+ */
+        background-image:    -moz-linear-gradient( #79a81c /*{a-bar-background-start}*/, #b3ce33 /*{a-bar-background-end}*/); /* FF3.6 */
+        background-image:     -ms-linear-gradient( #79a81c /*{a-bar-background-start}*/, #b3ce33 /*{a-bar-background-end}*/); /* IE10 */
+        background-image:      -o-linear-gradient( #79a81c /*{a-bar-background-start}*/, #b3ce33 /*{a-bar-background-end}*/); /* Opera 11.10+ */
+        background-image:         linear-gradient( #79a81c /*{a-bar-background-start}*/, #b3ce33 /*{a-bar-background-end}*/);
+    }
+
 
 	#new .ui-content a.ui-btn {
 		color: #fff;
@@ -319,8 +502,208 @@ body {
 		font-size: 60px;
 		font-weight: normal;
 		letter-spacing: 0.05em;
-		text-align: left;
+
+		text-decoration: none;
 	}
+
+
+/*####################################################################################################################################
+
+  SETTINGS
+
+####################################################################################################################################*/
+
+
+/* Warning box */
+#settings .warningbox.ui-field-contain {
+    /*background: #e64447;*/
+    background: #d72426;
+    border-top: 2px solid #f0595e;
+    border-bottom: 2px solid #d72426;
+}
+
+/* Settings Save Button */
+.ui-content .ui-btn,
+.ui-content .ui-btn-corner-all,
+.ui-shadow {
+	margin: 0;
+	padding: 0;
+	background: none;
+	border: 0;
+	text-shadow: none;
+	box-shadow: none;
+
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+/* Save button */
+#settings .ui-content .ui-btn {
+	height: 130px;
+
+	border-top: 2px solid #fff;/*#b9e135;*/
+	border-bottom: 2px solid #858585;
+
+	background-image: -webkit-gradient(linear, left top, left bottom, from( #dbdbdb /*{a-bar-background-start}*/), to( #aeaeae /*{a-bar-background-end}*/)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient( #dbdbdb /*{a-bar-background-start}*/, #aeaeae /*{a-bar-background-end}*/); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient( #dbdbdb /*{a-bar-background-start}*/, #aeaeae /*{a-bar-background-end}*/); /* FF3.6 */
+	background-image:     -ms-linear-gradient( #b3ce33 /*{a-bar-background-start}*/, #79a81c /*{a-bar-background-end}*/); /* IE10 */
+	background-image:      -o-linear-gradient( #b3ce33 /*{a-bar-background-start}*/, #79a81c /*{a-bar-background-end}*/); /* Opera 11.10+ */
+	background-image:         linear-gradient( #b3ce33 /*{a-bar-background-start}*/, #79a81c /*{a-bar-background-end}*/);
+
+	padding: 0 0 0 20px;
+	line-height: 130px;
+
+	font-family: 'BebasNeueRegular';
+	font-size: 60px;
+	font-weight: normal;
+	letter-spacing: 0.05em;
+	color: #353535;
+}
+
+    #settings .ui-content .ui-btn:hover {
+    	height: 130px;
+
+    	border-top: 2px solid #fff;/*#b9e135;*/
+    	border-bottom: 2px solid #858585;
+
+    	background-image: -webkit-gradient(linear, left top, left bottom, from( #aeaeae /*{a-bar-background-start}*/), to( #dbdbdb /*{a-bar-background-end}*/)); /* Saf4+, Chrome */
+    	background-image: -webkit-linear-gradient( #aeaeae /*{a-bar-background-start}*/, #dbdbdb /*{a-bar-background-end}*/); /* Chrome 10+, Saf5.1+ */
+    	background-image:    -moz-linear-gradient( #aeaeae /*{a-bar-background-start}*/, #dbdbdb /*{a-bar-background-end}*/); /* FF3.6 */
+    	background-image:     -ms-linear-gradient( #aeaeae /*{a-bar-background-start}*/, #dbdbdb /*{a-bar-background-end}*/); /* IE10 */
+    	background-image:      -o-linear-gradient( #aeaeae /*{a-bar-background-start}*/, #dbdbdb /*{a-bar-background-end}*/); /* Opera 11.10+ */
+    	background-image:         linear-gradient( #aeaeae /*{a-bar-background-start}*/, #dbdbdb /*{a-bar-background-end}*/);
+
+    	padding: 0 0 0 20px;
+    	line-height: 130px;
+
+    	font-family: 'BebasNeueRegular';
+    	font-size: 60px;
+    	font-weight: normal;
+    	letter-spacing: 0.05em;
+    	color: #353535;
+    }
+
+
+    /* Reset button */
+	#settings .ui-content a.ui-btn {
+		color: #fff;
+		text-transform: uppercase;
+		font-family: 'BebasNeueRegular';
+		font-size: 60px;
+		font-weight: normal;
+		letter-spacing: 0.05em;
+
+		border-top: 2px solid #f0595e;/*#f08d4a;*/
+		border-bottom: 2px solid #b51c22; /*d0311b*/
+
+
+
+     background-image: -webkit-gradient(linear, left top, left bottom, from( #d6141a /*{a-bar-background-start}*/), to( #b9000f /*{a-bar-background-end}*/)); /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient( #d6141a /*{a-bar-background-start}*/, #b9000f /*{a-bar-background-end}*/); /* Chrome 10+, Saf5.1+ */
+    background-image:    -moz-linear-gradient( #d6141a /*{a-bar-background-start}*/, #b9000f /*{a-bar-background-end}*/); /* FF3.6 */
+    background-image:     -ms-linear-gradient( #d6141a /*{a-bar-background-start}*/, #b9000f /*{a-bar-background-end}*/); /* IE10 */
+    background-image:      -o-linear-gradient( #d6141a /*{a-bar-background-start}*/, #b9000f /*{a-bar-background-end}*/); /* Opera 11.10+ */
+    background-image:         linear-gradient( #d6141a /*{a-bar-background-start}*/, #b9000f /*{a-bar-background-end}*/);
+	}
+
+    	#settings .ui-content a.ui-btn:hover {
+    		color: #fff;
+    		text-transform: uppercase;
+    		font-family: 'BebasNeueRegular';
+    		font-size: 60px;
+    		font-weight: normal;
+    		letter-spacing: 0.05em;
+
+    		border-top: 2px solid #f0595e;/*#f08d4a;*/
+    		border-bottom: 2px solid #b51c22; /*d0311b*/
+
+
+     background-image: -webkit-gradient(linear, left top, left bottom, from( #b9000f /*{a-bar-background-start}*/), to( #d6141a /*{a-bar-background-end}*/)); /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient( #b9000f /*{a-bar-background-start}*/, #d6141a /*{a-bar-background-end}*/); /* Chrome 10+, Saf5.1+ */
+    background-image:    -moz-linear-gradient( #b9000f /*{a-bar-background-start}*/, #d6141a /*{a-bar-background-end}*/); /* FF3.6 */
+    background-image:     -ms-linear-gradient( #b9000f /*{a-bar-background-start}*/, #d6141a /*{a-bar-background-end}*/); /* IE10 */
+    background-image:      -o-linear-gradient( #b9000f /*{a-bar-background-start}*/, #d6141a /*{a-bar-background-end}*/); /* Opera 11.10+ */
+    background-image:         linear-gradient( #b9000f /*{a-bar-background-start}*/, #d6141a /*{a-bar-background-end}*/);
+    	}
+
+
+#settings .removebox {
+    display: block;
+    line-height: 70px;
+    padding: 40px 20px 20px 20px;
+    font-family: 'BebasNeueRegular';
+    font-size: 36px;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    margin: 0;
+    border-bottom: 2px solid #373739;
+    border-top: 2px solid #232426;
+    color: #fff;
+    font-weight: normal;
+    background: #2a2a2a;
+    text-shadow: none;
+}
+
+    #settings .description {
+        font-family: arial;
+        font-size: 26px;
+        line-height: 30px;
+        display: block;
+        letter-spacing: 0em;
+        text-shadow: none;
+        color: #fff;
+    }
+
+        #settings .description.big {
+            font-size: 30px;
+            line-height: 36px;
+        }
+
+/*####################################################################################################################################
+
+  REPORT VIEW
+
+####################################################################################################################################*/
+#reportview.ui-page { min-height: 100%; }
+#reportview,
+#reportview .ui-content{background:white;
+font-family: arial;
+font-size: 26px;
+line-height: 30px;
+letter-spacing: 0em;
+text-shadow: none;
+}
+#reportview .label{font-weight:bold; font-family: 'BebasNeueRegular';}
+#reportview .incident_title{font-size:40px;border-bottom: 2px solid #70737A;margin-bottom:0;padding:0 20px 30px 20px}
+#reportview .incident_description{border-top: 2px solid #CBCFD9;padding:30px 20px}
+#reportview .interview-item-where,
+#reportview .interview-item-date{
+  border-bottom: 2px solid #70737A;
+  border-top: 2px solid #CBCFD9;
+  padding:10px 20px;
+  font-size:20px;
+}
+#reportview .interview-item-where div,
+#reportview .interview-item-date div{display:inline;}
+#reportview .incident_photo{text-align:center}
+#reportview .posted {
+    /*background: #e64447;*/
+    background: #d72426;
+    border-top: 2px solid #f0595e;
+    border-bottom: 2px solid #d72426;
+    color:white;
+    padding:0px 20px;
+    border-bottom: 2px solid #70737A;
+    border-top: 2px solid #CBCFD9;
+    text-align:center;
+    font-family: 'BebasNeueRegular';
+}
 
 /*####################################################################################################################################
 
@@ -344,5 +727,6 @@ body {
 	width: auto;
 }
 		.ui-footer .unsent {
+      display:none;
 			color: #952000;
 		}

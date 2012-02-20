@@ -1,6 +1,6 @@
 var api_url = "/api"  // fix for your server
-//var api_url ="/ushahidi-dev/api"
-var api_url ="/ushahidi/api"
+var api_url ="/ushahidi-dev/api"
+//var api_url ="/ushahidi/api"
 
 var interviews_db = {};
 
@@ -30,7 +30,8 @@ var interviews_db = {};
         // reset DB
         $('#reset').click(function() {
             context.resetDB();
-            $('.setting-status').html('Reset complete');
+            $('.status').html('Reset complete');
+            $.mobile.changePage("#index");
             return false;
         });
 
@@ -62,6 +63,7 @@ var interviews_db = {};
         allInterviews.list(null, function (results) {
             results.forEach(context.postInterview)
         });
+        $.mobile.changePage("#empty","none");
 
 
     };
@@ -186,10 +188,12 @@ var interviews_db = {};
             if(data["error"]!=undefined){
                 data = data["error"];
             }
-            if (data["code"]=="0")
+            if (data["code"]=="0"){
                 $('.status').html('Sync done');
-            else
+            }else{
                 $('.status').html('Sync failed: '+data["message"]);
+            }
+
         } else
             $('.status').html('Sync failed: '+jqXHRres.statusText);
     };
