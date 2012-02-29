@@ -59,6 +59,7 @@ body {
 		height: 75px;
 	}
 
+  .istance a.ui-link{text-decoration:none}
 	/* Back Button */
 	.ui-header .ui-btn-left {
 		left: 0;
@@ -693,16 +694,14 @@ text-shadow: none;
 #reportview .interview-item-date div{display:inline;}
 #reportview .incident_photo{text-align:center}
 #reportview .posted {
-    /*background: #e64447;*/
-    background: #d72426;
-    border-top: 2px solid #f0595e;
-    border-bottom: 2px solid #d72426;
-    color:white;
-    padding:0px 20px;
-    border-bottom: 2px solid #70737A;
-    border-top: 2px solid #CBCFD9;
-    text-align:center;
-    font-family: 'BebasNeueRegular';
+    position: absolute;
+    	width: 38px;
+    	height: 86px;
+    	float: right;
+    	top: 125px;
+    	right: 62px; /* 62px */
+    	background: transparent url(images/error-status.png) no-repeat center center;
+    	text-indent: -999em;
 }
 
 /*####################################################################################################################################

@@ -218,8 +218,10 @@ var interviews_app = {};
             $("#reportview div[data-role='content']").append($($(this).children()).clone());
             $("#reportview div[data-role='content'] .incident_date:first").remove();
             img_data = $("#reportview div[data-role='content'] .incident_photo").text();
-            var img_el = $("<img/>");
-            img_el.attr('src', img_data);
+            if(img_data!=""){
+                var img_el = $("<img/>");
+                img_el.attr('src', img_data);
+            }
             $("#reportview div[data-role='content'] .incident_photo").html(img_el);
             $("#reportview div[data-role='content'] .incident_photo").append("<img")
             $("#reportview div[data-role='content'] .interview-item-ct").show();
@@ -301,7 +303,10 @@ $(document).bind("mobileinit", function(){
         interviews_app.listingHide();
     });
 
-    $('#new').live('pageshow', interviews_app.checkFileSupport);
+    $('#new').live('pageshow', function(){
+        $('#new :input').val('');
+        interviews_app.checkFileSupport();
+    });
 
     $("#reportview").live("pagehide",function(){
         $("#reportview div[data-role='content']").empty()
