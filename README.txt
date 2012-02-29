@@ -37,7 +37,7 @@ How to start
 
   Note
 
-    In this configuration ushahidi is server on an URL as:
+    In this configuration ushahidi responds on an URL as:
 
       http://myushahidi.org/
 
