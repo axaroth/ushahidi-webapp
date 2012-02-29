@@ -8,10 +8,14 @@ How to start
 
   Build the project:
 
-    $ cd /var/www/
+    $ cd /opt/
     $ git clone git://github.com/axaroth/ushahidi-webapp.git oo-report
     $ cd oo-report
     $ python2.6 bootstrap.py
+
+      In buildout.cfg to edit the [static-config] server_port parameter, default
+      is port 8080.
+
     $ ./bin/buildout
 
   Start the http server:
@@ -20,6 +24,9 @@ How to start
 
   Rules for Apache:
 
+    You must have the mod_proxy enabled
+
+    RewriteEngine On
     RewriteRule ^/oo-report/(.*) http://127.0.0.1:8080/$1 [P,L]
     <Directory /var/www>
         Options Indexes FollowSymLinks MultiViews
@@ -27,6 +34,21 @@ How to start
         Order allow,deny
         Allow from all
     </Directory>
+
+  Note
+
+    In this configuration ushahidi is server on an URL as:
+
+      http://myushahidi.org/
+
+    and the web app on:
+
+      http://myushahidi.org/oo-report/
+
+    otherwise you need to modify the rule according and fix the constant in the
+    javascript file /opt/oo-report/www/resources/interview.db.js:
+
+      var api_url = "/api"  // fix for your server
 
 
 What we used
