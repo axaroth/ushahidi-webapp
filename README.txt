@@ -10,7 +10,7 @@ How to start
 
     $ cd /var/www/
     $ git clone git://github.com/axaroth/ushahidi-webapp.git oo-report
-    $ cd ushahidi-dev
+    $ cd oo-report
     $ python2.6 bootstrap.py
     $ ./bin/buildout
 
@@ -20,7 +20,7 @@ How to start
 
   Rules for Apache:
 
-    RewriteRule ^/oo-report/(.*) http://127.0.0.1:8005/$1 [P,L]
+    RewriteRule ^/oo-report/(.*) http://127.0.0.1:8080/$1 [P,L]
     <Directory /var/www>
         Options Indexes FollowSymLinks MultiViews
         AllowOverride All
