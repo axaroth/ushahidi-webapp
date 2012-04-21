@@ -1,14 +1,26 @@
 var api_url = "/api"  // fix for your server
-var api_url ="/ushahidi-dev/api"
-var api_url ="/ushahidi/api"
+//var api_url ="/ushahidi-dev/api"
+//var api_url ="/ushahidi/api"
 
 var interviews_db = {};
 
 (function(context) {
 
     context.initDB = function(){
-        persistence.store.websql.config(persistence, "Interviews",
-                                        'database', 10 * 1024 * 1024);
+        if (window.openDatabase) {
+            context.in_memory = false;
+            persistence.store.websql.config(persistence, "Interviews",
+                                            'database', 10 * 1024 * 1024);
+
+        } else if (typeof(localStorage) != 'undefined') {
+            context.in_memory = true;
+            console.log('In memory');
+            persistence.store.memory.config(persistence);
+        }
+        // else {
+            //~ $.mobile.changePage("#offlinealert");
+            //~ return false
+        //~ }
 
         context.Interview = persistence.define('Interview', {
             title: "TEXT",
@@ -22,7 +34,15 @@ var interviews_db = {};
 
         context.Interview.hasMany('answers', context.Answer, 'interview');
 
+        console.log('sync');
         persistence.schemaSync();
+
+        if (context.in_memory) {
+            console.log('In memory');
+            persistence.loadFromLocalStorage(function() { console.log("Loading from localStorage")})
+            console.log('done');
+        }
+
 
     };
 
@@ -31,7 +51,7 @@ var interviews_db = {};
         $('#reset').click(function() {
             context.resetDB();
             $('.status').html('Reset complete');
-            $.mobile.changePage("#index");
+            context.save_and_go("#index");
             return false;
         });
 
@@ -63,9 +83,6 @@ var interviews_db = {};
         allInterviews.list(null, function (results) {
             results.forEach(context.postInterview)
         });
-        $.mobile.changePage("#empty","none");
-
-
     };
 
     context.dataURItoBlob = function (dataURI) {
@@ -93,7 +110,7 @@ var interviews_db = {};
     context.postInterview = function (interview) {
         if (interview.posted == false) {
             interview.answers.list( function (answers) {
-                $('.status').ajaxError(context.uploadedFailed);
+                $('.status').ajaxError(context.uploadFailed);
                  // Check for the various File API support.
                 if (window.File && window.FileReader && window.FileList && window.Blob) {
                     // Great success! All the File APIs are supported.
@@ -126,22 +143,10 @@ var interviews_db = {};
                         formData.append('person_email', settings_data.person_email);
                     }
 
-                    $.ajax({
-                        url: api_url,
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        type: 'POST',
-                        success: function(data, textStatus, jqXHRres){
-                            context.uploadedInterview(data, textStatus, jqXHRres);
-                            interview.posted = true;
-                            persistence.flush();
-                        }
-                    });
-
+                    context.upload(api_url, formData, interview)
 
                 } else {
+                    console.log('no blob');
                     var data = {'task': 'report'};
 
                     for(var idx in answers) {
@@ -163,23 +168,36 @@ var interviews_db = {};
                         data.person_email = settings_data.person_email;
                     }
 
+                    context.upload(api_url, data, interview)
 
-                    $.post(api_url,
-                            data,
-                            function(data, textStatus, jqXHRres){
-                                context.uploadedInterview(data, textStatus, jqXHRres);
-                                interview.posted = true;
-                                persistence.flush();
-                            },
-                            'json');
                 }
             });
 
         };
     };
 
-    context.uploadedFailed = function (event, jqXHR, ajaxSettings, thrownError) {
+    context.upload = function (url, data, interview){
+          $.ajax({
+          url: url,
+          data: data,
+          cache: false,
+          contentType: false,
+          processData: false,
+          type: 'POST',
+          success: function(data, textStatus, jqXHRres){
+                      context.uploadedInterview(data, textStatus, jqXHRres);
+                      interview.posted = true;
+                      context.save_and_go("#empty");
+                    }
+          })
+    };
+
+
+    context.uploadFailed = function (event, jqXHR, ajaxSettings, thrownError) {
+        console.log('upload error')
+         $(this).addClass('failed')
         $(this).html('Sync failed: '+jqXHR.statusText);
+        $.mobile.changePage("#index");
     };
 
     context.uploadedInterview = function (data, textStatus, jqXHRres) {
@@ -188,25 +206,44 @@ var interviews_db = {};
 
         // note: this should be raised only after all interviews are uploaded...
         if (jqXHRres.success()) {
-            //XXX
-            data = $.parseJSON(data)
-
             if(data["error"]!=undefined){
                 data = data["error"];
             }
             if (data["code"]=="0"){
-                status_el.addClass('done')
-                status_el.html('Sync done');
-                interviews_app.updateStatusPostedInterview()
+                status_el.removeClass('failed')
+                status_el.html('');
             }else{
                 status_el.addClass('failed')
-                status_el.html('Sync failed: '+data["message"]);
+                $('.status').html('Sync failed: ushahidi says:'+data["message"]);
             }
         } else{
             status_el.addClass('failed')
             status_el.html('Sync failed: '+jqXHRres.statusText);
         }
     };
+
+    context.save = function(){
+        console.log("Saving/flushing");
+        persistence.flush();
+        persistence.flush();
+        if (context.in_memory) {
+            persistence.saveToLocalStorage(function() { console.log("Saving in localStorage")})
+        }
+    }
+
+    context.save_and_go = function(id){
+        console.log("Saving/flushing");
+        if (context.in_memory) {
+            persistence.flush();
+            persistence.saveToLocalStorage(function() {
+                  console.log("Saving in localStorage")
+                  $.mobile.changePage(id);
+            })
+        } else {
+            persistence.flush(function() {$.mobile.changePage(id);});
+        }
+    }
+
 })(interviews_db);
 
 // interviews configurations

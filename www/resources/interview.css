@@ -124,8 +124,8 @@ body {
 		border-radius: 0;
 
 
-		/*height: 75px;
-		line-height: 75px;*/
+		height: 75px;
+		line-height: 75px;
 
 		background: #252525 url(images/settings-ico.png) no-repeat center right;
 
@@ -201,7 +201,7 @@ body {
 }
 
 #index .ui-content .ui-btn {
-	height: 130px;
+	padding:20px 0;
 	border-top: 2px solid #cadf3c;/*#b9e135;*/
 	border-bottom: 2px solid #57970f;
 	margin-bottom: 4px;
@@ -216,7 +216,6 @@ body {
 }
 
     #index .ui-content .ui-btn:hover {
-    	height: 130px;
     	border-top: 2px solid #cadf3c;/*#b9e135;*/
     	border-bottom: 2px solid #57970f;
     	margin-bottom: 4px;
@@ -244,6 +243,8 @@ body {
 
 
 #index .ui-content .upload-btn .ui-btn {
+  width:100%;
+  padding:0px 0px 20px 0px;
 	height: 50px;
 	border-top: 2px solid #d6141a;/*#b9e135;*/
 	border-bottom: 2px solid #b9000f;
@@ -284,7 +285,7 @@ body {
 }
 .interview-item-ct{display:none}
 
-.interview-item .ui-link {
+.ui-body-c .interview-item .ui-link {
     text-decoration: none;
     color: #000;
 }
@@ -351,10 +352,6 @@ body {
 .status.progress{padding:20px 0}
 .status.done{color:#CADF3C; padding:20px 0}
 .status.failed{color:#D72426; padding:20px 0}
-
-
-/*full_screen_alert*/
-#full_screen_alert{color: white; height:71px; background-repeat:no-repeat; padding: 5px; background:red;display:none }
 
 
 /*####################################################################################################################################
@@ -611,6 +608,7 @@ body {
 
     /* Reset button */
 	#settings .ui-content a.ui-btn {
+    width:100%;
 		color: #fff;
 		text-transform: uppercase;
 		font-family: 'BebasNeueRegular';

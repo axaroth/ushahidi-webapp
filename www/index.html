@@ -5,28 +5,29 @@
   <head>
 
     <title>Ushahidi Report Tool</title>
-    <link rel="stylesheet" href="./resources/jquery.mobile-1.0a3.min.css" />
+    <link rel="stylesheet" href="./resources/jquery.mobile-1.1.0.min.css" />
+
     <link rel="stylesheet" href="./resources/interview.css" />
+
     <link rel="stylesheet" href="./resources/font.css" />
 
-<!--
-    <script src="http://code.google.com/apis/gears/gears_init.js" type="text/javascript" charset="utf-8"></script>
-    -->
+    <!-- geo location -->
+    <script src="./resources/gears_init.js" type="text/javascript" charset="utf-8"></script>
     <script src="./resources/geo.js" type="text/javascript" charset="utf-8"></script>
 
 
-    <script src="./resources/jquery-1.5.min.js"></script>
+    <script src="./resources/jquery-1.6.4.min.js"></script>
 
     <script src="./resources/gears_init.js"></script>
     <script src="./resources/persistence.js"></script>
+    <script src="./resources/persistence.store.memory.js"></script>
     <script src="./resources/persistence.store.sql.js"></script>
     <script src="./resources/persistence.store.websql.js"></script>
     <script src="./resources/interview.db.js"></script>
-
     <script src="./resources/interview.mobile.js"></script>
-    <script src="./resources/jquery.mobile-1.0a3.min.js"></script>
+    <script src="./resources/jquery.mobile-1.1.0.min.js"></script>
 
-
+	<!-- iOS -->
     <meta name="viewport" content="width=default-width, minimum-scale=0.5, maximum-scale=0.5, initial-scale=0.5" />
 
 
@@ -41,7 +42,7 @@
 <div data-role="page" class="page intro" id="index">
     <div data-role="header" data-position="inline">
 		<div class="logo"></div>
-		<a href="#settings" class="ui-btn-right">Settings</a>
+        <a data-role="button" href="#settings" class="ui-btn-right" data-transition="slide"></a>
     </div>
 
     <div data-role="content">
@@ -58,12 +59,11 @@
 
         <div id="interview-list">
             <div data-snippet="interview-item" class="interview-item" style="display:none">
-                <a href="#reportview">
+                <a href="#reportview" data-transition="slide">
                     <h2 class="incident_title">title</h2>
                     <span class="incident_date">01/01/2011</span>
                     <div class="posted">status</div>
                     <div class="interview-item-ct">
-                        <!--<div class="incident_category">category</div>-->
                         <div class="interview-item-date">
                             <div class="label">Date : </div>
                             <div class="value">
@@ -90,12 +90,6 @@
             </div>
             <div class="interview-list-uploaded"></div>
         </div>
-
-        <div id="full_screen_alert">
-  for a better mobile experience using the application in fullscreen.
-</div>
-
-
     </div>
 
     <div data-role="footer" class="ui-bar" data-position="fixed">
@@ -169,6 +163,7 @@
 <!-- SETTINGS -->
 <div data-role="page" id="settings">
     <div data-role="header" data-position="inline">
+        <a data-role="button" href="#index" data-iconpos="left" data-transition="slide" data-direction="reverse">back</a>
         <h1 class="section_title">Settings</h1>
     </div>
 
@@ -214,15 +209,23 @@
         <div class="setting-status"></div>
     </div>
 </div>
-<!-- -->
 
+<div data-role="page" id="offlinealert">
+  <div data-role="content">
+
+    <h1>Error</h1>
+    <div>This browser is not able to support the offline features.</div>
+
+  </div>
+</div>
+<!-- -->
 
 <!-- REPORTVIEW -->
 <div data-role="page" id="reportview">
 
     <div data-role="header" data-position="inline">
         <h1 class="section_title">Report</h1>
-        <!--<a href="#settings" data-icon="gear" class="ui-btn-right">Settings</a>-->
+        <a data-role="button" href="#index" data-iconpos="left" data-transition="slide" data-direction="reverse">back</a>
     </div>
 
     <div data-role="content">
@@ -242,13 +245,10 @@
 </div>
 
 
-<!-- EMPTY -->
-<div data-role="page" id="empty">
-    <div data-role="header">xx</div>
-    <div data-role="content">xx</div>
-    <div data-role="footer">xx</div>
-</div>
 
+
+<!-- EMPTY -->
+<div data-role="page" id="empty"></div>
 
 
 </body>

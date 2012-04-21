@@ -33,8 +33,7 @@ function geo_success_callback(p) {
 }
 
 function geo_error_callback(p) {
-    var msg = 'error='+p.code;
-    alert(msg);
+    var msg = 'GPS API: error='+p.code;
     console.log(msg);
 }
 
@@ -68,7 +67,6 @@ function handlePhotoSelect(files) {
 
 
 
-// --
 var interviews_app = {};
 
 (function(context) {
@@ -93,25 +91,23 @@ var interviews_app = {};
                           context._newInterview,
                           geo_error_callback,
                           {enableHighAccuracy:true});
-        $.mobile.changePage("#index");
-        status_el = $('.status')
-        status_el.addClass('progress')
-        status_el.html('Sync in progress')
-        status_el.append('<img src="resources/images/spinner.gif"/>')
         return false;
     };
 
     context._newInterview = function (position) {
-
+        console.log('start');
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
         console.log('lat='+latitude+';lon='+longitude);
 
+        console.log('new interview');
         var interview = new interviews_db.Interview({
             title: $("#incident_title").val().toString(),
             posted: false
         });
+        console.log('ok');
         persistence.add(interview);
+        console.log('add interview');
 
         ushahidi_date = ushahidiDate(new Date());
 
@@ -171,9 +167,8 @@ var interviews_app = {};
                     'incident_photo',
                     $("#incident_photo_preview img").attr('src'));
 
-        persistence.flush();
-        //context.updateStatus('done');
-
+        console.log('newInterview');
+        interviews_db.save();
         interviews_db.postInterview(interview)
     };
 
@@ -230,11 +225,6 @@ var interviews_app = {};
             $("#reportview div[data-role='content'] .incident_photo").append("<img")
             $("#reportview div[data-role='content'] .interview-item-ct").show();
         })
-    };
-
-    context.updateStatusPostedInterview = function (msg) {
-        context.listingHide();
-        context.listingUpdate()
     };
 
     context.listingHide = function (event, ui) {
@@ -327,30 +317,13 @@ $(document).bind("mobileinit", function(){
         $('.setting-status').html('')
     });
 
-    $("#empty").live("pageshow",function(){
+    $("#empty").live("pagebeforeshow",function(){
         $.mobile.changePage("#index","none")
     })
 
 })
 
 
-var util = {};
-(function(self)
-{
-    self.detect_full_screen = function()
-    {
-        if (("standalone" in window.navigator) && !window.navigator.standalone)
-        {
-            $("#full_screen_alert").show();
-        }
-        else
-        {
-            $("#full_screen_alert").hide();
-        }
-    };
-})(util);
-
 $(document).ready(function(){
-    util.detect_full_screen();
     interviews_app.initUI();
 })
