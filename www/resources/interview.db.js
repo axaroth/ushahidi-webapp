@@ -171,7 +171,7 @@ var interviews_db = {};
                         data.person_email = settings_data.person_email;
                     }
 
-                    context.upload(api_url, data, interview)
+                    context.upload(api_url, data, interview)  // to verify: before was a 'post' with 'json'
                             
                 }
             });
@@ -254,14 +254,17 @@ var interviews_conf = {};
         if (!localStorage.personal_info)
             localStorage.personal_info = JSON.stringify({});
 
-        $.ajax( api_url+"?task=categories",
-                settings={
-                   dataType:'json',
-                   success: function(ajaxArgs) {
+      $.ajax({
+          url: api_url,
+          data: {'task':'categories'},
+          type: 'POST',
+          dataType:'json',
+          success: function(ajaxArgs) {
                     localStorage.categories = context.parseCategories(ajaxArgs);
                     interviews_app.updateFormCategories(JSON.parse(localStorage.categories))
                   }
-                })
+          });  
+ 
     };
 
     context.parseCategories = function(ajaxArgs) {
