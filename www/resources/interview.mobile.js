@@ -67,7 +67,6 @@ function handlePhotoSelect(files) {
 
 
 
-// --
 var interviews_app = {};
 
 (function(context) {
@@ -92,9 +91,6 @@ var interviews_app = {};
                           context._newInterview,
                           geo_error_callback,
                           {enableHighAccuracy:true});
-        //~ $.mobile.changePage("#index");
-        $('.status').html('interview saved');
-
         return false;
     };
 
@@ -171,11 +167,8 @@ var interviews_app = {};
                     'incident_photo',
                     $("#incident_photo_preview img").attr('src'));
 
-        //~ persistence.flush();
         console.log('newInterview');
         interviews_db.save();
-        //context.updateStatus('done');
-
         interviews_db.postInterview(interview)
     };
 
@@ -194,7 +187,7 @@ var interviews_app = {};
             snippet.removeAttr("data-snippet");
             snippet.find("." + answer.query).text(answer.value);
         });
-
+        console.log(interview.posted)
         if (interview.posted == false){
             msg = "to upload";
             snippet.find(".posted").text(msg);
@@ -216,6 +209,8 @@ var interviews_app = {};
         if (unsent > 0){
             $('.rv-unsent').html($('.interview-item[data-status="to upload"]').length);
             $('.unsent').show()
+        }else{
+            $('.unsent').hide()
         }
 
         $(snippet).find("a").click(function(e){
@@ -234,6 +229,7 @@ var interviews_app = {};
 
     context.listingHide = function (event, ui) {
         $("#interview-list").find('div[data-snippet!=interview-item].interview-item').remove();
+        $(".upload-btn").hide();
     };
 
     context.updateFormCategories = function (categories) {
@@ -321,11 +317,12 @@ $(document).bind("mobileinit", function(){
         $('.setting-status').html('')
     });
 
-    $("#empty").live("pageshow",function(){
+    $("#empty").live("pagebeforeshow",function(){
         $.mobile.changePage("#index","none")
     })
 
 })
+
 
 $(document).ready(function(){
     interviews_app.initUI();

@@ -6,13 +6,15 @@
 
     <title>Ushahidi Report Tool</title>
     <link rel="stylesheet" href="./resources/jquery.mobile-1.1.0.min.css" />
+
     <link rel="stylesheet" href="./resources/interview.css" />
+
     <link rel="stylesheet" href="./resources/font.css" />
 
     <!-- geo location -->
     <script src="./resources/gears_init.js" type="text/javascript" charset="utf-8"></script>
     <script src="./resources/geo.js" type="text/javascript" charset="utf-8"></script>
-    <!-- -->
+
 
     <script src="./resources/jquery-1.6.4.min.js"></script>
 
@@ -21,58 +23,35 @@
     <script src="./resources/persistence.store.memory.js"></script>
     <script src="./resources/persistence.store.sql.js"></script>
     <script src="./resources/persistence.store.websql.js"></script>
-
     <script src="./resources/interview.db.js"></script>
     <script src="./resources/interview.mobile.js"></script>
-
     <script src="./resources/jquery.mobile-1.1.0.min.js"></script>
 
 	<!-- iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="width=default-width, minimum-scale=0.5, maximum-scale=0.5, initial-scale=0.5" />
 
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <!-- -->
 
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon" sizes="72x72" href="./resources/images/ipad-icon.png" />
 
   </head>
 <body>
 
-<!-- INTRO -->
+
 <div data-role="page" class="page intro" id="index">
     <div data-role="header" data-position="inline">
-
-		<!-- BEGIN .logo -->
-		<div class="logo">
-
-
-		<!-- END .logo -->
-		</div>
-
-		<!-- BEGIN #btn-settings -->
-		<a href="#settings" class="ui-btn-right">Settings</a>
-
-		<!-- END #btn-settings -->
-
+		<div class="logo"></div>
+        <a data-role="button" href="#settings" class="ui-btn-right" data-transition="slide"></a>
     </div>
 
     <div data-role="content">
-
-        <!--<div class="link-external">
-          <a href="http://www.ushahidi.org">Ushahidi instance</a>
-        </div>-->
-
-        <!-- BEGIN #istance -->
         <div class="istance">
-
         	<a href="http://174.129.246.207/ushahidi-dev/"><span class="link">Snow Emergency Italy 2012</span></a>
-
-        <!-- END #istance -->
         </div>
 
         <div>
-            <a href="#new" data-role="button" class="btn-submit">Submit report</a>
+            <a href="#new" data-role="button" class="btn-submit" data-transition="slide">Submit report</a>
         </div>
 
         <div class="status"></div>
@@ -80,12 +59,11 @@
 
         <div id="interview-list">
             <div data-snippet="interview-item" class="interview-item" style="display:none">
-                <a href="#reportview">
+                <a href="#reportview" data-transition="slide">
                     <h2 class="incident_title">title</h2>
                     <span class="incident_date">01/01/2011</span>
                     <div class="posted">status</div>
                     <div class="interview-item-ct">
-                        <!--<div class="incident_category">category</div>-->
                         <div class="interview-item-date">
                             <div class="label">Date : </div>
                             <div class="value">
@@ -124,6 +102,7 @@
 <!-- NEW -->
 <div data-role="page" id="new">
     <div data-role="header" data-position="inline">
+        <a data-role="button" href="#index" data-iconpos="left" data-transition="slide" data-direction="reverse">back</a>
       <h1 class="section_title">ADD NEW REPORT</h1>
     </div>
     <div data-role="content">
@@ -185,6 +164,7 @@
 <!-- SETTINGS -->
 <div data-role="page" id="settings">
     <div data-role="header" data-position="inline">
+        <a data-role="button" href="#index" data-iconpos="left" data-transition="slide" data-direction="reverse">back</a>
         <h1 class="section_title">Settings</h1>
     </div>
 
@@ -234,19 +214,19 @@
 <div data-role="page" id="offlinealert">
   <div data-role="content">
 
-    <h1>Error</h1>    
+    <h1>Error</h1>
     <div>This browser is not able to support the offline features.</div>
 
   </div>
 </div>
-
 <!-- -->
+
 <!-- REPORTVIEW -->
 <div data-role="page" id="reportview">
 
     <div data-role="header" data-position="inline">
         <h1 class="section_title">Report</h1>
-        <!--<a href="#settings" data-icon="gear" class="ui-btn-right">Settings</a>-->
+        <a data-role="button" href="#index" data-iconpos="left" data-transition="slide" data-direction="reverse">back</a>
     </div>
 
     <div data-role="content">
@@ -269,11 +249,8 @@
 
 
 <!-- EMPTY -->
-<div data-role="page" id="empty">
-    <div data-role="header">xx</div>
-    <div data-role="content">xx</div>
-    <div data-role="footer">xx</div>
-</div>
+<div data-role="page" id="empty"></div>
+
 
 </body>
 </html>
