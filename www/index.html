@@ -5,27 +5,27 @@
   <head>
 
     <title>Ushahidi Report Tool</title>
-    <link rel="stylesheet" href="./resources/jquery.mobile-1.0a3.min.css" />
+    <link rel="stylesheet" href="./resources/jquery.mobile-1.1.0.min.css" />
     <link rel="stylesheet" href="./resources/interview.css" />
     <link rel="stylesheet" href="./resources/font.css" />
 
     <!-- geo location -->
-    <script src="http://code.google.com/apis/gears/gears_init.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./resources/gears_init.js" type="text/javascript" charset="utf-8"></script>
     <script src="./resources/geo.js" type="text/javascript" charset="utf-8"></script>
     <!-- -->
 
-    <script src="./resources/jquery-1.5.min.js"></script>
+    <script src="./resources/jquery-1.6.4.min.js"></script>
 
     <script src="./resources/gears_init.js"></script>
     <script src="./resources/persistence.js"></script>
+    <script src="./resources/persistence.store.memory.js"></script>
     <script src="./resources/persistence.store.sql.js"></script>
     <script src="./resources/persistence.store.websql.js"></script>
 
     <script src="./resources/interview.db.js"></script>
     <script src="./resources/interview.mobile.js"></script>
 
-    <script src="./resources/jquery.mobile-1.0a3.min.js"></script>
-
+    <script src="./resources/jquery.mobile-1.1.0.min.js"></script>
 
 	<!-- iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -75,7 +75,7 @@
             <a href="#new" data-role="button" class="btn-submit">Submit report</a>
         </div>
 
-        <!--<div class="status"></div>-->
+        <div class="status"></div>
 
 
         <div id="interview-list">
@@ -230,9 +230,17 @@
         <div class="setting-status"></div>
     </div>
 </div>
+
+<div data-role="page" id="offlinealert">
+  <div data-role="content">
+
+    <h1>Error</h1>    
+    <div>This browser is not able to support the offline features.</div>
+
+  </div>
+</div>
+
 <!-- -->
-
-
 <!-- REPORTVIEW -->
 <div data-role="page" id="reportview">
 
@@ -256,6 +264,8 @@
   </div>
   <a data-rel="back" data-role="button" data-theme="c" class="ui-btn-right">Close</a>
 </div>
+
+
 
 
 <!-- EMPTY -->

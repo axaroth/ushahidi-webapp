@@ -33,8 +33,7 @@ function geo_success_callback(p) {
 }
 
 function geo_error_callback(p) {
-    var msg = 'error='+p.code;
-    alert(msg);
+    var msg = 'GPS API: error='+p.code;
     console.log(msg);
 }
 
@@ -93,23 +92,26 @@ var interviews_app = {};
                           context._newInterview,
                           geo_error_callback,
                           {enableHighAccuracy:true});
-        $.mobile.changePage("#index");
+        //~ $.mobile.changePage("#index");
         $('.status').html('interview saved');
 
         return false;
     };
 
     context._newInterview = function (position) {
-
+        console.log('start');
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
         console.log('lat='+latitude+';lon='+longitude);
 
+        console.log('new interview');
         var interview = new interviews_db.Interview({
             title: $("#incident_title").val().toString(),
             posted: false
         });
+        console.log('ok');
         persistence.add(interview);
+        console.log('add interview');
 
         ushahidi_date = ushahidiDate(new Date());
 
@@ -169,7 +171,9 @@ var interviews_app = {};
                     'incident_photo',
                     $("#incident_photo_preview img").attr('src'));
 
-        persistence.flush();
+        //~ persistence.flush();
+        console.log('newInterview');
+        interviews_db.save();
         //context.updateStatus('done');
 
         interviews_db.postInterview(interview)
