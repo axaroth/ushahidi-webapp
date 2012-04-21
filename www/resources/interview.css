@@ -2,6 +2,8 @@
 
   GLOBAL
 
+red #D72426
+green #57970F
 ####################################################################################################################################*/
 
 body {
@@ -337,6 +339,22 @@ body {
     	text-indent: -999em;
     }
 
+
+/*Status*/
+.status{
+  font-size: 30px;
+  line-height: 36px;
+  position:relative;
+  text-align:center;
+  text-shadow:none}
+.status img{position:relative;margin:0 auto;display:block;}
+.status.progress{padding:20px 0}
+.status.done{color:#CADF3C; padding:20px 0}
+.status.failed{color:#D72426; padding:20px 0}
+
+
+/*full_screen_alert*/
+#full_screen_alert{color: white; height:71px; background-repeat:no-repeat; padding: 5px; background:red;display:none }
 
 
 /*####################################################################################################################################

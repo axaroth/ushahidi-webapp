@@ -94,8 +94,10 @@ var interviews_app = {};
                           geo_error_callback,
                           {enableHighAccuracy:true});
         $.mobile.changePage("#index");
-        $('.status').html('interview saved');
-
+        status_el = $('.status')
+        status_el.addClass('progress')
+        status_el.html('Sync in progress')
+        status_el.append('<img src="resources/images/spinner.gif"/>')
         return false;
     };
 
@@ -190,7 +192,7 @@ var interviews_app = {};
             snippet.removeAttr("data-snippet");
             snippet.find("." + answer.query).text(answer.value);
         });
-
+        console.log(interview.posted)
         if (interview.posted == false){
             msg = "to upload";
             snippet.find(".posted").text(msg);
@@ -212,6 +214,8 @@ var interviews_app = {};
         if (unsent > 0){
             $('.rv-unsent').html($('.interview-item[data-status="to upload"]').length);
             $('.unsent').show()
+        }else{
+            $('.unsent').hide()
         }
 
         $(snippet).find("a").click(function(e){
@@ -228,8 +232,14 @@ var interviews_app = {};
         })
     };
 
+    context.updateStatusPostedInterview = function (msg) {
+        context.listingHide();
+        context.listingUpdate()
+    };
+
     context.listingHide = function (event, ui) {
         $("#interview-list").find('div[data-snippet!=interview-item].interview-item').remove();
+        $(".upload-btn").hide();
     };
 
     context.updateFormCategories = function (categories) {
@@ -323,6 +333,24 @@ $(document).bind("mobileinit", function(){
 
 })
 
+
+var util = {};
+(function(self)
+{
+    self.detect_full_screen = function()
+    {
+        if (("standalone" in window.navigator) && !window.navigator.standalone)
+        {
+            $("#full_screen_alert").show();
+        }
+        else
+        {
+            $("#full_screen_alert").hide();
+        }
+    };
+})(util);
+
 $(document).ready(function(){
+    util.detect_full_screen();
     interviews_app.initUI();
 })

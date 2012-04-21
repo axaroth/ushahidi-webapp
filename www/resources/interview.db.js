@@ -1,6 +1,6 @@
 var api_url = "/api"  // fix for your server
 var api_url ="/ushahidi-dev/api"
-//var api_url ="/ushahidi/api"
+var api_url ="/ushahidi/api"
 
 var interviews_db = {};
 
@@ -183,19 +183,29 @@ var interviews_db = {};
     };
 
     context.uploadedInterview = function (data, textStatus, jqXHRres) {
+        status_el = $('.status')
+        status_el.removeClass('progress')
+
         // note: this should be raised only after all interviews are uploaded...
         if (jqXHRres.success()) {
+            //XXX
+            data = $.parseJSON(data)
+
             if(data["error"]!=undefined){
                 data = data["error"];
             }
             if (data["code"]=="0"){
-                $('.status').html('Sync done');
+                status_el.addClass('done')
+                status_el.html('Sync done');
+                interviews_app.updateStatusPostedInterview()
             }else{
-                $('.status').html('Sync failed: '+data["message"]);
+                status_el.addClass('failed')
+                status_el.html('Sync failed: '+data["message"]);
             }
-
-        } else
-            $('.status').html('Sync failed: '+jqXHRres.statusText);
+        } else{
+            status_el.addClass('failed')
+            status_el.html('Sync failed: '+jqXHRres.statusText);
+        }
     };
 })(interviews_db);
 
