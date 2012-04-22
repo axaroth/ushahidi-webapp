@@ -168,7 +168,7 @@ var interviews_db = {};
                         data.person_email = settings_data.person_email;
                     }
 
-                    context.upload(api_url, data, interview)  // to verify: before was a 'post' with 'json'
+                    context.upload(api_url, data, interview);
 
                 }
             });
@@ -222,25 +222,16 @@ var interviews_db = {};
         }
     };
 
-    context.save = function(){
-        console.log("Saving/flushing");
-        persistence.flush();
-        persistence.flush();
-        if (context.in_memory) {
-            persistence.saveToLocalStorage(function() { console.log("Saving in localStorage")})
-        }
-    }
-
     context.save_and_go = function(id){
         console.log("Saving/flushing");
         if (context.in_memory) {
             persistence.flush();
             persistence.saveToLocalStorage(function() {
                   console.log("Saving in localStorage")
-                  $.mobile.changePage(id);
+                  if (id) { $.mobile.changePage(id) };
             })
         } else {
-            persistence.flush(function() {$.mobile.changePage(id);});
+            persistence.flush(function() { if (id) { $.mobile.changePage(id) }});
         }
     }
 
@@ -262,7 +253,7 @@ var interviews_conf = {};
           url: api_url,
           data: {'task':'categories'},
           type: 'POST',
-          dataType:'json',
+          dataType: 'json',
           success: function(ajaxArgs) {
                     localStorage.categories = context.parseCategories(ajaxArgs);
                     interviews_app.updateFormCategories(JSON.parse(localStorage.categories))

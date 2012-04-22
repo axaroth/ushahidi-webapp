@@ -30,11 +30,16 @@ function ushahidiDate(date){
 // geolocation
 function geo_success_callback(p) {
     console.log('lat='+p.coords.latitude+';lon='+p.coords.longitude);
+    //enable submit
+    $("#submit_report").addClass('btn-submit')
+    $("#submit_report").removeClass('ui-disabled')
 }
 
 function geo_error_callback(p) {
-    var msg = 'GPS API: error='+p.code;
+    var msg = 'Unable to use GPS (error='+p.code+')';
     console.log(msg);
+    $('.status').html(msg);
+    $.mobile.changePage('#index');
 }
 
 function handlePhotoSelect(files) {
@@ -168,7 +173,7 @@ var interviews_app = {};
                     $("#incident_photo_preview img").attr('src'));
 
         console.log('newInterview');
-        interviews_db.save();
+        interviews_db.save_and_go();
         interviews_db.postInterview(interview)
     };
 
