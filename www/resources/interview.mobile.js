@@ -36,7 +36,7 @@ function geo_success_callback(p) {
 }
 
 function geo_error_callback(p) {
-    var msg = 'Unable to use GPS (error='+p.code+')';
+    var msg = 'Unable to use GPS (error: '+p.message+' #'+p.code+')';
     console.log(msg);
     $('.status').html(msg);
     $.mobile.changePage('#index');
