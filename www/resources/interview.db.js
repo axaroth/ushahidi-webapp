@@ -1,5 +1,5 @@
-var api_url = "/api"  // fix for your server
-//var api_url ="/ushahidi-dev/api"
+//var api_url = "/api"  // fix for your server
+var api_url ="/ushahidi-dev/api"
 //var api_url ="/ushahidi/api"
 
 var interviews_db = {};
@@ -143,7 +143,19 @@ var interviews_db = {};
                         formData.append('person_email', settings_data.person_email);
                     }
 
-                    context.upload(api_url, formData, interview)
+                    $.ajax({
+                      url: url,
+                      data: data,
+                      cache: false,
+                      contentType: false, // must be a multipart due to the image
+                      processData: false,
+                      type: 'POST',
+                      success: function(data, textStatus, jqXHRres){
+                                  success = context.uploadedInterview(data, textStatus, jqXHRres);
+                                  if (success) { interview.posted = true; }
+                                  context.save_and_go("#empty");
+                                }
+                      })
 
                 } else {
                     console.log('no blob');
@@ -168,34 +180,24 @@ var interviews_db = {};
                         data.person_email = settings_data.person_email;
                     }
 
-                    context.upload(api_url, data, interview);
-
+                    //iOS need a $.post
+                    $.post(api_url,
+                            data,
+                            function(data, textStatus, jqXHRres){
+                                success = context.uploadedInterview(data, textStatus, jqXHRres);
+                                if (success) { interview.posted = true; };
+                                context.save_and_go("#empty");
+                            },
+                            'json');
                 }
             });
 
         };
     };
 
-    context.upload = function (url, data, interview){
-          $.ajax({
-          url: url,
-          data: data,
-          cache: false,
-          contentType: false,
-          processData: false,
-          type: 'POST',
-          success: function(data, textStatus, jqXHRres){
-                      context.uploadedInterview(data, textStatus, jqXHRres);
-                      interview.posted = true;
-                      context.save_and_go("#empty");
-                    }
-          })
-    };
-
-
     context.uploadFailed = function (event, jqXHR, ajaxSettings, thrownError) {
         console.log('upload error')
-         $(this).addClass('failed')
+        $(this).addClass('failed')
         $(this).html('Sync failed: '+jqXHR.statusText);
         $.mobile.changePage("#index");
     };
@@ -212,13 +214,16 @@ var interviews_db = {};
             if (data["code"]=="0"){
                 status_el.removeClass('failed')
                 status_el.html('');
+                return true
             }else{
                 status_el.addClass('failed')
                 $('.status').html('Sync failed: ushahidi says:'+data["message"]);
+                return false
             }
-        } else{
+        } else {
             status_el.addClass('failed')
             status_el.html('Sync failed: '+jqXHRres.statusText);
+            return false
         }
     };
 
@@ -258,8 +263,8 @@ var interviews_conf = {};
                     localStorage.categories = context.parseCategories(ajaxArgs);
                     interviews_app.updateFormCategories(JSON.parse(localStorage.categories))
                   }
-          });  
- 
+          });
+
     };
 
     context.parseCategories = function(ajaxArgs) {
