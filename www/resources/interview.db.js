@@ -1,5 +1,5 @@
-//var api_url = "/api"  // fix for your server
-var api_url ="/ushahidi-dev/api"
+var api_url = "/api"  // fix for your server
+//var api_url ="/ushahidi-dev/api"
 //var api_url ="/ushahidi/api"
 
 var interviews_db = {};
@@ -144,7 +144,7 @@ var interviews_db = {};
                     }
 
                     $.ajax({
-                      url: url,
+                      url: api_url,
                       data: data,
                       cache: false,
                       contentType: false, // must be a multipart due to the image
