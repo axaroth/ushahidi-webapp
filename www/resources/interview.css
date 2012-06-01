@@ -522,6 +522,11 @@ body {
 		text-decoration: none;
 	}
 
+/* it shows the multiple select in desktop browser but brokes the mobile ones
+.ui-select .ui-btn select {
+  opacity: 1;
+}
+*/
 
 /*####################################################################################################################################
 
